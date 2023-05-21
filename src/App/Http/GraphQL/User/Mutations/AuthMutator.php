@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL\User\Mutations;
+namespace App\Http\GraphQL\User\Mutations;
 
 use Arr;
 use Illuminate\Support\Facades\Auth;

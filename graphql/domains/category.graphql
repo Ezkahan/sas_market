@@ -1,0 +1,10 @@
+type Category {
+    id: ID!
+    name: JSON!
+    description: JSON
+    icon: Upload
+    image: Upload
+    parent_id: ID
+    visited_count: Int
+}
+

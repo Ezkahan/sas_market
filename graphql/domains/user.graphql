@@ -5,13 +5,18 @@ extend type Query {
 
 type Mutation {
     login(email: String, phone: Int, password: String!): User
-        @field(resolver: "App\\GraphQL\\User\\Mutations\\AuthMutator@login")
+        @field(
+            resolver: "App\\Http\\GraphQL\\User\\Mutations\\AuthMutator@login"
+        )
     register(
         email: String
         phone: Int
         password: String!
         password_confirmation: String!
-    ): User @field(resolver: "App\\GraphQL\\User\\Mutations\\AuthMutator@register")
+    ): User
+        @field(
+            resolver: "App\\Http\\GraphQL\\User\\Mutations\\AuthMutator@register"
+        )
 }
 
 type User {
