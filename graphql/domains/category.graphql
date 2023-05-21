@@ -5,6 +5,46 @@ type Category {
     icon: Upload
     image: Upload
     parent_id: ID
+    category: Category
     visited_count: Int
 }
 
+extend type Query {
+    category(id: ID! @eq): Category! @find @guard
+    categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
+        @paginate
+        @guard
+}
+
+extend type Mutation {
+    addCategory(
+        name: JSON!
+        description: JSON
+        icon: Upload
+        image: Upload
+        parent_id: ID
+    ): Category
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Category\\Mutations\\CategoryMutator@add"
+        )
+
+    updateCategory(
+        id: ID! @eq
+        name: JSON!
+        description: JSON
+        icon: Upload
+        image: Upload
+        parent_id: ID
+    ): Category
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Category\\Mutations\\CategoryMutator@add"
+        )
+
+    deleteCategory(id: ID!): String
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Category\\Mutations\\CategoryMutator@delete"
+        )
+}

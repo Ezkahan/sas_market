@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Promotion\Models;
+namespace Domain\Documentation\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;

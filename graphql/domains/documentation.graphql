@@ -1,0 +1,27 @@
+type Documentation {
+    id: ID!
+    title: JSON!
+    text: JSON!
+    preview: Int
+}
+
+extend type Query {
+    documentationById(id: ID! @eq): Documentation! @find @guard
+    documentations(orderBy: _ @orderBy(columns: ["id"])): [Documentation!]!
+        @paginate
+        @guard
+}
+
+extend type Mutation {
+    addDocumentation(title: JSON!, text: JSON!): String
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Documentation\\Mutations\\DocumentationMutator@add"
+        )
+
+    deleteDocumentation(id: ID!): String
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Documentation\\Mutations\\DocumentationMutator@delete"
+        )
+}

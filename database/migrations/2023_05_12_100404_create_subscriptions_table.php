@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('subscriptions', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->enum('type', [SubscriptionTypeEnum::values()])->default(SubscriptionTypeEnum::MAIL->value);
             $table->boolean('confirmed')->default(false);
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscriptions');
+        Schema::dropIfExists('subscribers');
     }
 };

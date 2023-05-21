@@ -1,10 +1,10 @@
 <?php
 
-namespace Domain\Subscription\Enums;
+namespace Domain\Subscriber\Enums;
 
 use App\Traits\EnumToArray;
 
-enum SubscriptionTypeEnum:string
+enum SubscriberTypeEnum:string
 {
     use EnumToArray;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Domain\Promotion\Models;
+namespace Domain\Subscriber\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Domain\Subscription\Enums\SubscriptionTypeEnum;
+use Domain\Subscriber\Enums\SubscriberTypeEnum;
 
-class Subscription extends Model
+class Subscriber extends Model
 {
     protected $fillable = [
         'comment',
@@ -15,6 +15,6 @@ class Subscription extends Model
     ];
 
     protected $casts = [
-        'type' => SubscriptionTypeEnum::class,
+        'type' => SubscriberTypeEnum::class,
     ];
 }

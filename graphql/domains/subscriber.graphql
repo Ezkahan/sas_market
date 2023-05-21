@@ -1,0 +1,33 @@
+type Subscriber {
+    id: ID!
+    type: SubscriberType!
+    confirmed: Boolean
+    confirm_code: String
+    user_id: ID
+    email: String
+}
+
+enum SubscriberType {
+    MAIL @enum(value: "MAIL")
+    SMS @enum(value: "SMS")
+    WEB @enum(value: "WEB")
+    MOBILE @enum(value: "MOBILE")
+}
+
+extend type Query {
+    subscribers(orderBy: _ @orderBy(columns: ["id"])): Subscriber
+        @guard
+        @paginate
+}
+
+extend type Mutation {
+    subscribe(email: String!): String
+        @field(
+            resolver: "App\\Http\\GraphQL\\Subscriber\\Mutations\\SubscriberMutator@subscribe"
+        )
+
+    unsubscribe(email: String!): String
+        @field(
+            resolver: "App\\Http\\GraphQL\\Subscriber\\Mutations\\SubscriberMutator@unsubscribe"
+        )
+}

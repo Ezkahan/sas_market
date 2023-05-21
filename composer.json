@@ -14,7 +14,8 @@
         "mll-lab/graphql-php-scalars": "^6.2",
         "mll-lab/laravel-graphiql": "^2.0",
         "mll-lab/laravel-graphql-playground": "^2.6",
-        "nuwave/lighthouse": "^6.8"
+        "nuwave/lighthouse": "^6.8",
+        "spatie/laravel-translatable": "^6.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -152,6 +152,9 @@ return [
             'Domain\\Category\\Models',
             'Domain\\Coupon\\Models',
             'Domain\\Promotion\\Models',
+            'Domain\\Documentation\\Models',
+            'Domain\\Subscriber\\Models',
+            'Domain\\News\\Models',
             'Domain\\User\\Models',
         ],
         'queries' => [
@@ -168,6 +171,7 @@ return [
             'App\\Http\\GraphQL\\Category\\Mutations',
             'App\\Http\\GraphQL\\Coupon\\Mutations',
             'App\\Http\\GraphQL\\Promotion\\Mutations',
+            'App\\Http\\GraphQL\\Subscriber\\Mutations',
             'App\\Http\\GraphQL\\User\\Mutations',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',

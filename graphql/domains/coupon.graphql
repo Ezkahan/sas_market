@@ -1,0 +1,31 @@
+type Coupon {
+    id: ID!
+    title: JSON!
+    promo_price: Int!
+    started_at: DateTime!
+    ended_at: DateTime!
+}
+
+extend type Query {
+    coupon(id: ID! @eq): Coupon! @find @guard
+    coupons(orderBy: _ @orderBy(columns: ["id"])): [Coupon!]! @paginate @guard
+}
+
+extend type Mutation {
+    createCoupon(
+        title: JSON!
+        promo_price: Int!
+        started_at: DateTime!
+        ended_at: DateTime!
+    ): Coupon
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Coupon\\Mutations\\CouponMutator@create"
+        )
+
+    deleteCoupon(id: ID!): String
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\Coupon\\Mutations\\CouponMutator@delete"
+        )
+}

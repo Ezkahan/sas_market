@@ -1,0 +1,23 @@
+type News {
+    id: ID!
+    title: JSON!
+    description: JSON!
+    image: Upload
+}
+
+extend type Query {
+    newsById(id: ID! @eq): News! @find @guard
+    news(orderBy: _ @orderBy(columns: ["id"])): [News!]! @paginate @guard
+}
+
+extend type Mutation {
+    addNews(title: JSON!, description: JSON!, image: Upload): News
+        @guard
+        @field(resolver: "App\\Http\\GraphQL\\News\\Mutations\\NewsMutator@add")
+
+    deleteNews(id: ID!): String
+        @guard
+        @field(
+            resolver: "App\\Http\\GraphQL\\News\\Mutations\\NewsMutator@delete"
+        )
+}
