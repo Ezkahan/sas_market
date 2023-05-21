@@ -1,0 +1,13 @@
+extend type Query {
+    promotions(orderBy: _ @orderBy(columns: ["id"])): [Promotion!]!
+        @paginate
+        @guard
+}
+
+type Promotion {
+    id: ID!
+    image: String!
+    from_date: DateTime!
+    to_date: DateTime!
+    link: String
+}

@@ -1,0 +1,30 @@
+extend type Query {
+    users(orderBy: _ @orderBy(columns: ["id"])): [User!]! @paginate @guard
+    user(id: ID @eq): User @find @guard
+}
+
+type Mutation {
+    login(email: String, phone: Int, password: String!): User
+        @field(resolver: "App\\GraphQL\\User\\Mutations\\AuthMutator@login")
+    register(
+        email: String
+        phone: Int
+        password: String!
+        password_confirmation: String!
+    ): User @field(resolver: "App\\GraphQL\\User\\Mutations\\AuthMutator@register")
+}
+
+type User {
+    id: ID!
+    firstname: String!
+    lastname: String!
+    photo: String
+    birth_day: String # (required, not editable)
+    phone: String
+    email: String
+    password: String
+    role_id: String
+    gender: String
+    device: String
+    token: String
+}

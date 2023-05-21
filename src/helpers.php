@@ -1,0 +1,3 @@
+<?php
+
+// saveImage helper
