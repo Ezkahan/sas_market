@@ -17,8 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->json('title')->nullable();
             $table->integer('promo_price')->default(0);
-            $table->timestamp('started_at');
-            $table->timestamp('ended_at');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('ended_at')->nullable();
             $table->timestamps();
         });
     }

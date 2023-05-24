@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('banner')->nullable();
-            $table->timestamp('started_at');
-            $table->timestamp('ended_at');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('ended_at')->nullable();
             $table->integer('percent')->nullable();
             $table->integer('fix_price')->nullable();
             $table->string('link')->nullable();
