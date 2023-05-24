@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Domain\Subscription\Enums\SubscriptionTypeEnum;
+use Domain\Subscriber\Enums\SubscriberTypeEnum;
 
 return new class extends Migration
 {
@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('type', [SubscriptionTypeEnum::values()])->default(SubscriptionTypeEnum::MAIL->value);
+            $table->enum('type', [SubscriberTypeEnum::values()])->default(SubscriberTypeEnum::MAIL->value);
             $table->boolean('confirmed')->default(false);
             $table->text('confirm_code');
             $table->unsignedBigInteger('user_id');
