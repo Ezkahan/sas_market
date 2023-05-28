@@ -6,22 +6,19 @@ type Documentation {
 }
 
 extend type Query {
-    documentationById(id: ID! @eq): Documentation! @find @guard
+    documentationById(id: ID! @eq): Documentation! @find
     documentations(orderBy: _ @orderBy(columns: ["id"])): [Documentation!]!
         @paginate
-        @guard
 }
 
 extend type Mutation {
     addDocumentation(title: JSON!, text: JSON!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Documentation\\Mutations\\DocumentationMutator@add"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "AddDocumentationMutation")
 
     deleteDocumentation(id: ID!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Documentation\\Mutations\\DocumentationMutator@delete"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "DeleteDocumentationMutation")
 }

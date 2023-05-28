@@ -7,8 +7,8 @@ type Coupon {
 }
 
 extend type Query {
-    coupon(id: ID! @eq): Coupon! @find @guard
-    coupons(orderBy: _ @orderBy(columns: ["id"])): [Coupon!]! @paginate @guard
+    coupon(id: ID! @eq): Coupon! @find
+    coupons(orderBy: _ @orderBy(columns: ["id"])): [Coupon!]! @paginate
 }
 
 extend type Mutation {
@@ -19,13 +19,11 @@ extend type Mutation {
         ended_at: DateTime!
     ): Coupon
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Coupon\\Mutations\\CouponMutator@create"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "CreateCouponMutation")
 
     deleteCoupon(id: ID!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Coupon\\Mutations\\CouponMutator@delete"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "DeleteCouponMutation")
 }

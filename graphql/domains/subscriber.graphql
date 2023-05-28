@@ -21,13 +21,6 @@ extend type Query {
 }
 
 extend type Mutation {
-    subscribe(email: String!): String
-        @field(
-            resolver: "App\\Http\\GraphQL\\Subscriber\\Mutations\\SubscriberMutator@subscribe"
-        )
-
-    unsubscribe(email: String!): String
-        @field(
-            resolver: "App\\Http\\GraphQL\\Subscriber\\Mutations\\SubscriberMutator@unsubscribe"
-        )
+    subscribe(email: String!): String @field(resolver: "SubscribeMutation")
+    unsubscribe(email: String!): String @field(resolver: "UnsubscribeMutation")
 }

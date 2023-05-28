@@ -1,0 +1,38 @@
+type Product {
+    id: ID!
+    title: JSON
+    description: JSON
+    code: String
+    brand_id: ID
+    brand: Brand
+    category_id: ID
+    category: ID
+    price: String
+    percent: String
+    in_stock: Boolean
+    status: Boolean
+    stock: Int
+    preview: Int
+}
+
+extend type Query {
+    products(orderBy: _ @orderBy(columns: ["id"])): [Product!]! @paginate
+    products(id: ID @eq): Product! @find
+}
+
+extend type Mutation {
+    addProduct(title: JSON, description: JSON): Product
+        @guard
+        @guard(with: ["admin"])
+        @field(resolver: "AddProductMutation")
+
+    updateProduct(id: ID!, title: JSON, description: JSON): Product
+        @guard
+        @guard(with: ["admin"])
+        @field(resolver: "UpdateProductMutation")
+
+    deleteProduct(id: ID): String
+        @guard
+        @guard(with: ["admin"])
+        @field(resolver: "DeleteProductMutation")
+}

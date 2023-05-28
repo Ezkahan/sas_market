@@ -10,10 +10,8 @@ type Category {
 }
 
 extend type Query {
-    category(id: ID! @eq): Category! @find @guard
-    categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
-        @paginate
-        @guard
+    category(id: ID! @eq): Category! @find
+    categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]! @paginate
 }
 
 extend type Mutation {
@@ -25,9 +23,8 @@ extend type Mutation {
         parent_id: ID
     ): Category
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Category\\Mutations\\CategoryMutator@add"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "AddCategoryMutation")
 
     updateCategory(
         id: ID! @eq
@@ -38,13 +35,11 @@ extend type Mutation {
         parent_id: ID
     ): Category
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Category\\Mutations\\CategoryMutator@add"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "UpdateCategoryMutation")
 
     deleteCategory(id: ID!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Category\\Mutations\\CategoryMutator@delete"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "DeleteCategoryMutation")
 }

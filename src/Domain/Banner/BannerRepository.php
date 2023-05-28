@@ -2,10 +2,12 @@
 
 namespace Domain\Banner;
 
-use Arr;
 use Domain\Banner\Models\Banner;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 
-class BannerManager {
+class BannerRepository
+{
     protected Banner $banner;
 
     public function __construct(Banner $banner)
@@ -18,8 +20,7 @@ class BannerManager {
         $arr = Arr::only($data, ['link', 'category_id', 'position']);
         $banner = $this->banner->create($arr);
 
-        if($data['image'])
-        {
+        if ($data['image']) {
             $this->saveImage($banner, $data['image']);
         }
 
@@ -28,9 +29,7 @@ class BannerManager {
 
     public function saveImage(Banner $banner, UploadedFile $image)
     {
-        $path = '/assets/images/banners/';
-        $image->save(public_path().$path);
-
+        $path = saveImage($image, $banner->name, '/assets/images/banners/');
         return $banner->update(['image' => $path]);
     }
 

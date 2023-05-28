@@ -2,11 +2,12 @@
 
 namespace Domain\Brand;
 
-use Arr;
-use Log;
 use Domain\Brand\Models\Brand;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 
-class BrandManager {
+class BrandRepository
+{
     protected Brand $brand;
 
     public function __construct(Brand $brand)
@@ -19,8 +20,7 @@ class BrandManager {
         $arr = Arr::only($data, ['name', 'category_id']);
         $brand = $this->brand->create($arr);
 
-        if(array_key_exists('logo', $data) && $data['logo'])
-        {
+        if (array_key_exists('logo', $data) && $data['logo']) {
             $this->saveLogo($brand, $data['logo']);
         }
 
@@ -29,9 +29,7 @@ class BrandManager {
 
     public function saveLogo(Brand $brand, UploadedFile $logo)
     {
-        $path = '/assets/images/brands/';
-        $logo->save(public_path().$path);
-
+        $path = saveImage($logo, $brand->name, '/assets/images/brands/');
         return $brand->update(['logo' => $path]);
     }
 

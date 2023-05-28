@@ -6,20 +6,18 @@ type Brand {
 }
 
 extend type Query {
-    brands(orderBy: _ @orderBy(columns: ["id"])): [Brand!]! @paginate @guard
-    brand(id: ID! @eq): Brand! @find @guard
+    brands(orderBy: _ @orderBy(columns: ["id"])): [Brand!]! @paginate
+    brand(id: ID! @eq): Brand! @find
 }
 
 extend type Mutation {
     addBrand(name: String!, logo: Upload, category_id: Int!): Brand
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Brand\\Mutations\\BrandMutator@add"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "AddBrandMutation")
 
     deleteBrand(id: ID!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Brand\\Mutations\\BrandMutator@delete"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "DeleteBrandMutation")
 }

@@ -6,18 +6,18 @@ type News {
 }
 
 extend type Query {
-    newsById(id: ID! @eq): News! @find @guard
-    news(orderBy: _ @orderBy(columns: ["id"])): [News!]! @paginate @guard
+    newsById(id: ID! @eq): News! @find
+    news(orderBy: _ @orderBy(columns: ["id"])): [News!]! @paginate
 }
 
 extend type Mutation {
     addNews(title: JSON!, description: JSON!, image: Upload): News
         @guard
-        @field(resolver: "App\\Http\\GraphQL\\News\\Mutations\\NewsMutator@add")
+        @guard(with: ["admin"])
+        @field(resolver: "AddNewsMutation")
 
     deleteNews(id: ID!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\News\\Mutations\\NewsMutator@delete"
-        )
+        @guard(with: ["admin"])
+        @field(resolver: "DeleteNewsMutation")
 }

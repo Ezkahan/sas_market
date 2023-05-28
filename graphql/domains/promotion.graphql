@@ -1,13 +1,29 @@
-extend type Query {
-    promotions(orderBy: _ @orderBy(columns: ["id"])): [Promotion!]!
-        @paginate
-        @guard
-}
-
 type Promotion {
     id: ID!
     image: String!
     from_date: DateTime!
     to_date: DateTime!
     link: String
+}
+
+extend type Query {
+    promotions(orderBy: _ @orderBy(columns: ["id"])): [Promotion!]! @paginate
+    promotion(id: ID! @eq): Promotion! @find
+}
+
+extend type Mutation {
+    addPromotion(
+        image: Upload!
+        from_date: DateTime!
+        to_date: DateTime!
+        link: String
+    ): Promotion
+        @guard
+        @guard(with: ["admin"])
+        @field(resolver: "AddPromotionMutation")
+
+    deletePromotion(id: ID): String
+        @guard
+        @guard(with: ["admin"])
+        @field(resolver: "DeletePromotionMutation")
 }

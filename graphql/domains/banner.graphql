@@ -8,8 +8,8 @@ type Banner {
 }
 
 extend type Query {
-    banners(orderBy: _ @orderBy(columns: ["id"])): [Banner!]! @paginate @guard
-    banner(id: ID! @eq): Banner! @find @guard
+    banners(orderBy: _ @orderBy(columns: ["id"])): [Banner!]! @paginate
+    banner(id: ID! @eq): Banner! @find
 }
 
 extend type Mutation {
@@ -18,15 +18,9 @@ extend type Mutation {
         link: String
         category_id: ID!
         position: String!
-    ): Banner
-        @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Banner\\Mutations\\BannerMutator@add"
-        )
+    ): Banner @guard @field(resolver: "AddBannerMutation")
 
     deleteBanner(id: ID!): String
         @guard
-        @field(
-            resolver: "App\\Http\\GraphQL\\Banner\\Mutations\\BannerMutator@delete"
-        )
+        @field(resolver: "DeleteBannerMutation")
 }
