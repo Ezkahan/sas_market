@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 return [
     /*
@@ -158,6 +160,7 @@ return [
             'Domain\\Subscriber\\Models',
             'Domain\\News\\Models',
             'Domain\\User\\Models',
+            'Domain\\Product\\Models',
         ],
         'queries' => [
             'App\\Http\\GraphQL\\Banner\\Queries',
@@ -173,8 +176,11 @@ return [
             'App\\Http\\GraphQL\\Category\\Mutations',
             'App\\Http\\GraphQL\\Coupon\\Mutations',
             'App\\Http\\GraphQL\\Promotion\\Mutations',
+            'App\\Http\\GraphQL\\Documentation\\Mutations',
             'App\\Http\\GraphQL\\Subscriber\\Mutations',
             'App\\Http\\GraphQL\\User\\Mutations',
+            'App\\Http\\GraphQL\\News\\Mutations',
+            'App\\Http\\GraphQL\\Product\\Mutations',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',
