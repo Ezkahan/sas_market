@@ -5,7 +5,7 @@ type Category {
     icon: Upload
     image: Upload
     parent_id: ID
-    category: Category
+    category: Category @hasOne
     visited_count: Int
 }
 
@@ -30,8 +30,6 @@ extend type Mutation {
         id: ID! @eq
         name: JSON!
         description: JSON
-        icon: Upload
-        image: Upload
         parent_id: ID
     ): Category
         @guard

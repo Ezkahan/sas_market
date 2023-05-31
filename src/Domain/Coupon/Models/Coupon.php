@@ -3,7 +3,6 @@
 namespace Domain\Coupon\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Domain\User\Models;
 use Spatie\Translatable\HasTranslations;
 
 class Coupon extends Model
@@ -19,7 +18,11 @@ class Coupon extends Model
         'ended_at',
     ];
 
-    protected $casts = ['title' => 'json'];
+    protected $casts = [
+        'title' => 'json',
+        'started_at' => 'datetime',
+        'ended_at' => 'datetime',
+    ];
 
     protected $dates = [
         'started_at',
@@ -29,5 +32,10 @@ class Coupon extends Model
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->getTranslations('title');
     }
 }

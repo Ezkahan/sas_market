@@ -3,7 +3,7 @@
 namespace App\Http\GraphQL\Banner\Mutations;
 
 use Domain\Banner\Actions\SaveBannerAction;
-use Illuminate\Support\Arr;
+use Domain\Banner\DTO\BannerDTO;
 
 final class AddBannerMutation
 {
@@ -13,7 +13,12 @@ final class AddBannerMutation
      */
     public function __invoke($_, array $args)
     {
-        $data = Arr::only($args, ['image', 'link', 'category_id', 'position']);
+        $data = new BannerDTO(
+            $args['link'],
+            $args['category_id'],
+            $args['position'],
+        );
+
         return app(SaveBannerAction::class)->run($data);
     }
 }

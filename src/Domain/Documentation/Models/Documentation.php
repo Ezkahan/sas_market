@@ -24,4 +24,19 @@ class Documentation extends Model
         'title' => 'json',
         'text' => 'json',
     ];
+
+    public function getTitleAttribute()
+    {
+        return $this->getTranslations('title');
+    }
+
+    public function getTextAttribute()
+    {
+        return $this->getTranslations('text');
+    }
+
+    public function getPreview()
+    {
+        return $this->preview;
+    }
 }

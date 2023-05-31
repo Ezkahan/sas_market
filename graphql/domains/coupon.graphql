@@ -18,8 +18,8 @@ extend type Mutation {
         started_at: DateTime!
         ended_at: DateTime!
     ): Coupon
-        @guard
-        @guard(with: ["admin"])
+        # @guard
+        # @guard(with: ["admin"])
         @field(resolver: "CreateCouponMutation")
 
     deleteCoupon(id: ID!): String

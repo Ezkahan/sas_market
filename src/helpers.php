@@ -13,3 +13,12 @@ if (!function_exists('saveImage')) {
         return $path . $newName;
     }
 }
+
+
+if (!function_exists("defaultImage")) {
+    function defaultImage()
+    {
+        $imagePath = "/assets/images/default.jpg";
+        return is_file(public_path() . $imagePath) ? url('/') . $imagePath : "Please add default image to public path assets/images folder";
+    }
+}

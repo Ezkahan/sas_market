@@ -21,7 +21,22 @@ class News extends Model
     ];
 
     protected $casts = [
-        'title' => 'json',
+        'title'       => 'json',
         'description' => 'json',
     ];
+
+    public function getTitleAttribute()
+    {
+        return $this->getTranslations('title');
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->getTranslations('description');
+    }
+
+    public function getImage()
+    {
+        return is_file(public_path() . $this->image) ? url('/') . $this->image : defaultImage();
+    }
 }

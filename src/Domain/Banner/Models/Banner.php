@@ -18,4 +18,10 @@ class Banner extends Model
     protected $casts = [
         'position' => BannerEnum::class,
     ];
+
+    public function getImageAttribute()
+    {
+        return defaultImage();
+        // return is_file(public_path() . $this->image) ? url("/") . $this->image : defaultImage();
+    }
 }

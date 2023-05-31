@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Category\Mutations;
 
+use Domain\Category\Actions\DeleteCategoryAction;
+
 final class DeleteCategoryMutation
 {
     /**
@@ -10,6 +12,6 @@ final class DeleteCategoryMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        return app(DeleteCategoryAction::class)->run($args["id"]);
     }
 }

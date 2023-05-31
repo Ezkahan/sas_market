@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Coupon\Mutations;
 
+use Domain\Category\Actions\DeleteCouponAction;
+
 final class DeleteCouponMutation
 {
     /**
@@ -10,6 +12,6 @@ final class DeleteCouponMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        return app(DeleteCouponAction::class)->run($args["id"]);
     }
 }

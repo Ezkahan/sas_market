@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Category\Mutations;
 
+use Domain\Category\Actions\AddCategoryAction;
+
 final class AddCategoryMutation
 {
     /**
@@ -10,6 +12,6 @@ final class AddCategoryMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        return app(AddCategoryAction::class)->run($args);
     }
 }

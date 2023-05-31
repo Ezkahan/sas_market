@@ -1,21 +1,20 @@
 <?php
 
-namespace Domain\Banner\Actions;
+namespace Domain\Category\Actions;
 
-use Domain\Banner\BannerRepository;
-use Domain\Banner\DTO\BannerDTO;
+use Domain\Category\CategoryRepository;
 use Exception;
 
-class SaveBannerAction
+class AddCategoryAction
 {
-    protected BannerRepository $repository;
+    protected CategoryRepository $repository;
 
-    public function __construct(BannerRepository $repository)
+    public function __construct(CategoryRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    public function run(BannerDTO $data)
+    public function run(array $data)
     {
         try {
             return $this->repository->save($data);

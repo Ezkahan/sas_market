@@ -13,4 +13,9 @@ class Brand extends Model
     ];
 
     protected $casts = [];
+
+    public function getLogoAttribute()
+    {
+        return is_file(public_path() . $this->logo) ? url("/") . $this->logo : defaultImage();
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Domain\Product\Models;
 
+use Domain\Brand\Models\Brand;
+use Domain\Category\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
@@ -29,7 +31,27 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'title' => 'json',
+        'title'       => 'json',
         'description' => 'json',
     ];
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->getTranslations('title');
+    }
+
+    public function getDescriptionAttribute()
+    {
+        return $this->getTranslations('description');
+    }
 }

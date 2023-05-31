@@ -3,8 +3,10 @@
 namespace Domain\Banner\Actions;
 
 use Domain\Banner\BannerRepository;
+use Exception;
 
-class DeleteBannerAction {
+class DeleteBannerAction
+{
     protected BannerRepository $repository;
 
     public function __construct(BannerRepository $repository)
@@ -16,9 +18,8 @@ class DeleteBannerAction {
     {
         try {
             return $this->repository->delete($data);
-        }
-        catch (Exception $exception) {
-            throw new Exception("Error not deleted");
+        } catch (Exception $exception) {
+            throw new Exception("Error not deleted " . $exception->getMessage());
         }
     }
 }

@@ -3,8 +3,10 @@
 namespace Domain\Brand\Actions;
 
 use Domain\Brand\BrandRepository;
+use Exception;
 
-class AddBrandAction {
+class AddBrandAction
+{
     protected BrandRepository $repository;
 
     public function __construct(BrandRepository $repository)
@@ -16,9 +18,8 @@ class AddBrandAction {
     {
         try {
             return $this->repository->save($data);
-        }
-        catch (Exception $exception) {
-            throw new Exception("Error not saved");
+        } catch (Exception $exception) {
+            throw new Exception("Error not saved " . $exception->getMessage());
         }
     }
 }

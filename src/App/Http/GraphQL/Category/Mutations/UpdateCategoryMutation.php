@@ -2,6 +2,9 @@
 
 namespace App\Http\GraphQL\Category\Mutations;
 
+use Domain\Category\Actions\UpdateCategoryAction;
+use Illuminate\Support\Arr;
+
 final class UpdateCategoryMutation
 {
     /**
@@ -10,6 +13,8 @@ final class UpdateCategoryMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        $data = Arr::only($args, ["name", "description", "parent_id"]);
+
+        return app(UpdateCategoryAction::class)->run($data, $args["id"]);
     }
 }
