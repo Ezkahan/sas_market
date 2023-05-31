@@ -18,7 +18,7 @@ if (!function_exists('saveImage')) {
 if (!function_exists("defaultImage")) {
     function defaultImage()
     {
-        $imagePath = "/assets/images/default.jpg";
+        $imagePath = "/assets/images/default.webp";
         return is_file(public_path() . $imagePath) ? url('/') . $imagePath : "Please add default image to public path assets/images folder";
     }
 }
