@@ -2,10 +2,9 @@
 
 namespace App\Http\GraphQL\User\Mutations;
 
-use Arr;
-use Hash;
-use Illuminate\Support\Facades\Auth;
 use Domain\User\Models\User;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Hash;
 
 final class LoginMutation
 {
@@ -17,13 +16,14 @@ final class LoginMutation
     {
         $credentials = Arr::only($args, ['phone', 'password']);
         $user = User::where('phone', $credentials['phone'])->first();
-        $token = $user->createToken('sas_market')->plainTextToken;
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return [
                 'message' => 'Error',
             ];
         }
+
+        $token = $user->createToken('sas_market')->plainTextToken;
 
         return [
             'phone' => $user->phone,
