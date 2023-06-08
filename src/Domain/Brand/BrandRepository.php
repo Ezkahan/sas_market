@@ -2,6 +2,7 @@
 
 namespace Domain\Brand;
 
+use Domain\Brand\DTO\BrandDTO;
 use Domain\Brand\Models\Brand;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
@@ -15,12 +16,12 @@ class BrandRepository
         $this->brand = $brand;
     }
 
-    public function save(array $data)
+    public function save(BrandDTO $data)
     {
         $arr = Arr::only($data, ['name', 'category_id']);
         $brand = $this->brand->create($arr);
 
-        if (array_key_exists('logo', $data) && $data['logo']) {
+        if ($data['logo']) {
             $this->saveLogo($brand, $data['logo']);
         }
 

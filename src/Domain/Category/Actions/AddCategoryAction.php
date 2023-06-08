@@ -3,6 +3,7 @@
 namespace Domain\Category\Actions;
 
 use Domain\Category\CategoryRepository;
+use Domain\Category\DTO\CategoryDTO;
 use Exception;
 
 class AddCategoryAction
@@ -14,7 +15,7 @@ class AddCategoryAction
         $this->repository = $repository;
     }
 
-    public function run(array $data)
+    public function run(CategoryDTO $data)
     {
         try {
             return $this->repository->save($data);

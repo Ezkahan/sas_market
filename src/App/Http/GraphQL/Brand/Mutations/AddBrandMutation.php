@@ -2,8 +2,8 @@
 
 namespace App\Http\GraphQL\Brand\Mutations;
 
-use Domain\Brand\Actions\AddAction;
-use Illuminate\Support\Arr;
+use Domain\Brand\Actions\AddBrandAction;
+use Domain\Brand\DTO\BrandDTO;
 
 final class AddBrandMutation
 {
@@ -13,7 +13,12 @@ final class AddBrandMutation
      */
     public function __invoke($_, array $args)
     {
-        $data = Arr::only($args, ['name', 'logo', 'category_id']);
-        return app(AddAction::class)->run($data);
+        $data = new BrandDTO(
+            $args['name'],
+            $args['logo'],
+            $args['category_id'],
+        );
+
+        return app(AddBrandAction::class)->run($data);
     }
 }

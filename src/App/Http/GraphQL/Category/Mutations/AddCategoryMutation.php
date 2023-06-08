@@ -3,6 +3,7 @@
 namespace App\Http\GraphQL\Category\Mutations;
 
 use Domain\Category\Actions\AddCategoryAction;
+use Domain\Category\DTO\CategoryDTO;
 
 final class AddCategoryMutation
 {
@@ -12,6 +13,13 @@ final class AddCategoryMutation
      */
     public function __invoke($_, array $args)
     {
-        return app(AddCategoryAction::class)->run($args);
+        $data = new CategoryDTO(
+            $args['name'],
+            $args['logo'],
+            $args['description'],
+            $args['parent_id'],
+        );
+
+        return app(AddCategoryAction::class)->run($data);
     }
 }

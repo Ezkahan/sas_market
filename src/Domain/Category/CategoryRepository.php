@@ -2,6 +2,7 @@
 
 namespace Domain\Category;
 
+use Domain\Category\DTO\CategoryDTO;
 use Domain\Category\Models\Category;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
@@ -15,12 +16,12 @@ class CategoryRepository
         $this->category = $category;
     }
 
-    public function save(array $data)
+    public function save(CategoryDTO $data)
     {
         $arr = Arr::only($data, ['name', 'description', 'parent_id']);
         $category = $this->category->create($arr);
 
-        if (array_key_exists('icon', $data) && $data['icon']) {
+        if ($data['icon']) {
             $this->saveIcon($category, $data['icon']);
         }
 
