@@ -1,15 +1,15 @@
 <?php
 
-namespace Domain\Coupon\Actions;
+namespace Domain\Documentation\Actions;
 
-use Domain\Coupon\CouponRepository;
+use Domain\Documentation\DocumentationRepository;
 use Exception;
 
-class DeleteCouponAction
+class DeleteDocumentationAction
 {
-    protected CouponRepository $repository;
+    protected DocumentationRepository $repository;
 
-    public function __construct(CouponRepository $repository)
+    public function __construct(DocumentationRepository $repository)
     {
         $this->repository = $repository;
     }

@@ -8,16 +8,16 @@ use Illuminate\Http\UploadedFile;
 
 class BannerRepository
 {
-    protected Banner $banner;
+    protected Banner $model;
 
     public function __construct(Banner $banner)
     {
-        $this->banner = $banner;
+        $this->model = $banner;
     }
 
     public function save(BannerDTO $data)
     {
-        $banner = $this->banner->create($data->toArray());
+        $banner = $this->model->create($data->toArray());
 
         if ($data['image']) {
             $this->saveImage($banner, $data['image']);
@@ -34,6 +34,6 @@ class BannerRepository
 
     public function delete(int $id): string
     {
-        return $this->banner->where('id', '=', $id)->delete();
+        return $this->model->where('id', '=', $id)->delete();
     }
 }

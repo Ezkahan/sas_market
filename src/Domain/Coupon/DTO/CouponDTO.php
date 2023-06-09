@@ -22,8 +22,8 @@ class CouponDTO
                 'ru' => $this->title->ru,
             ],
             'promo_price' => $this->promo_price,
-            'started_at' => $this->started_at,
-            'ended_at' => $this->ended_at,
+            'started_at'  => $this->started_at,
+            'ended_at'    => $this->ended_at,
         ];
     }
 }

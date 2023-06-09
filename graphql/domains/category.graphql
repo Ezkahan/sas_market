@@ -5,7 +5,7 @@ type Category {
     icon: Upload
     image: Upload
     parent_id: ID
-    category: Category @hasOne
+    category: Category @belongsTo
     visited_count: Int
 }
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\GraphQL\Coupon\Mutations;
 
-use Domain\Category\Actions\DeleteCouponAction;
+use Domain\Coupon\Actions\DeleteCouponAction;
 
 final class DeleteCouponMutation
 {

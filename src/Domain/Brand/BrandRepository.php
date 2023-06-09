@@ -9,17 +9,17 @@ use Illuminate\Support\Arr;
 
 class BrandRepository
 {
-    protected Brand $brand;
+    protected Brand $model;
 
     public function __construct(Brand $brand)
     {
-        $this->brand = $brand;
+        $this->model = $brand;
     }
 
     public function save(BrandDTO $data)
     {
         $arr = Arr::only($data, ['name', 'category_id']);
-        $brand = $this->brand->create($arr);
+        $brand = $this->model->create($arr);
 
         if ($data['logo']) {
             $this->saveLogo($brand, $data['logo']);
@@ -36,6 +36,6 @@ class BrandRepository
 
     public function delete($id): string
     {
-        return $this->brand->where('id', '=', $id)->delete();
+        return $this->model->where('id', '=', $id)->delete();
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Documentation\Mutations;
 
+use Domain\Documentation\Actions\DeleteDocumentationAction;
+
 final class DeleteDocumentationMutation
 {
     /**
@@ -10,6 +12,6 @@ final class DeleteDocumentationMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        return app(DeleteDocumentationAction::class)->run($args["id"]);
     }
 }

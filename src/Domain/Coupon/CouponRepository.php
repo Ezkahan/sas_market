@@ -7,20 +7,20 @@ use Domain\Coupon\Models\Coupon;
 
 class CouponRepository
 {
-    protected Coupon $coupon;
+    protected Coupon $model;
 
     public function __construct(Coupon $coupon)
     {
-        $this->coupon = $coupon;
+        $this->model = $coupon;
     }
 
     public function create(CouponDTO $data)
     {
-        return $this->coupon->create($data->toArray());
+        return $this->model->create($data->toArray());
     }
 
     public function delete(int $id): string
     {
-        return $this->coupon->where('id', '=', $id)->delete();
+        return $this->model->where('id', '=', $id)->delete();
     }
 }

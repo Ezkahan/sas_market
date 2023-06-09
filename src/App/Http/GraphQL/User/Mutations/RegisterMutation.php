@@ -2,10 +2,8 @@
 
 namespace App\Http\GraphQL\User\Mutations;
 
-use Arr;
-use Hash;
-use Illuminate\Support\Facades\Auth;
 use Domain\User\Models\User;
+use Illuminate\Support\Arr;
 
 final class RegisterMutation
 {
@@ -20,8 +18,8 @@ final class RegisterMutation
         $token = $user->createToken('sas_market')->plainTextToken;
 
         return [
-            'id' => $user->id,
-            'name' => $user->name,
+            'id'    => $user->id,
+            'name'  => $user->name,
             'email' => $user->email,
             'phone' => $user->phone,
             'token' => $token,
@@ -33,7 +31,7 @@ final class RegisterMutation
         return [
             'firstname' => ["alpha", "min:2", "max:100"],
             'lastname'  => ["alpha", "min:2", "max:100"],
-            'email'     => ["email","unique:users"],
+            'email'     => ["email", "unique:users"],
             'phone'     => ["digits_between:7,11", "unique:users"],
         ];
     }

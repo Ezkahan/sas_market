@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Documentation\Mutations;
 
+use Domain\Documentation\DTO\DocumentationDTO;
+
 final class AddDocumentationMutation
 {
     /**
@@ -10,6 +12,11 @@ final class AddDocumentationMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        $data = new DocumentationDTO(
+            $args['title'],
+            $args['text'],
+        );
+
+        return app(AddDocumentationAction::class)->run($data);
     }
 }

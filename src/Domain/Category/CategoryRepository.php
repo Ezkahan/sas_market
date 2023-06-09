@@ -9,17 +9,17 @@ use Illuminate\Support\Arr;
 
 class CategoryRepository
 {
-    protected Category $category;
+    protected Category $model;
 
     public function __construct(Category $category)
     {
-        $this->category = $category;
+        $this->model = $category;
     }
 
     public function save(CategoryDTO $data)
     {
         $arr = Arr::only($data, ['name', 'description', 'parent_id']);
-        $category = $this->category->create($arr);
+        $category = $this->model->create($arr);
 
         if ($data['icon']) {
             $this->saveIcon($category, $data['icon']);
@@ -30,7 +30,7 @@ class CategoryRepository
 
     public function update(array $data, int $id)
     {
-        $category = $this->category->find($id);
+        $category = $this->model->find($id);
         $category->update($data);
 
         return;
@@ -50,6 +50,6 @@ class CategoryRepository
 
     public function delete($id): string
     {
-        return $this->category->where('id', '=', $id)->delete();
+        return $this->model->where('id', '=', $id)->delete();
     }
 }

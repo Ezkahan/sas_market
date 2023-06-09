@@ -4,6 +4,8 @@ namespace Domain\Banner\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Domain\Banner\Enums\BannerEnum;
+use Domain\Category\Models\Category;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Banner extends Model
 {
@@ -18,6 +20,11 @@ class Banner extends Model
     protected $casts = [
         'position' => BannerEnum::class,
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function getImageAttribute()
     {
