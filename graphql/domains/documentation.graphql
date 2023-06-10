@@ -14,11 +14,17 @@ extend type Query {
 extend type Mutation {
     addDocumentation(title: JSON!, text: JSON!): String
         @guard
-        @guard(with: ["admin"])
+        @can(
+            ability: "add"
+            model: "Domain\\Documentation\\Models\\Documentation"
+        )
         @field(resolver: "AddDocumentationMutation")
 
     deleteDocumentation(id: ID!): String
         @guard
-        @guard(with: ["admin"])
+        @can(
+            ability: "delete"
+            model: "Domain\\Documentation\\Models\\Documentation"
+        )
         @field(resolver: "DeleteDocumentationMutation")
 }

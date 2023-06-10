@@ -21,11 +21,11 @@ extend type Mutation {
         position: String!
     ): Banner
         @guard
-        # @guard(with: ["admin"])
+        @can(ability: "add", model: "Domain\\Banner\\Models\\Banner")
         @field(resolver: "AddBannerMutation")
 
     deleteBanner(id: ID!): String
         @guard
-        # @guard(with: ["admin"])
+        @can(ability: "delete", model: "Domain\\Banner\\Models\\Banner")
         @field(resolver: "DeleteBannerMutation")
 }

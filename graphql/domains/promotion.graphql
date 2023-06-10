@@ -19,11 +19,11 @@ extend type Mutation {
         link: String
     ): Promotion
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "add", model: "Domain\\Promotion\\Models\\Promotion")
         @field(resolver: "AddPromotionMutation")
 
     deletePromotion(id: ID): String
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "delete", model: "Domain\\Promotion\\Models\\Promotion")
         @field(resolver: "DeletePromotionMutation")
 }

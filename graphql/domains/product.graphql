@@ -23,16 +23,16 @@ extend type Query {
 extend type Mutation {
     addProduct(title: JSON, description: JSON): Product
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "add", model: "Domain\\Product\\Models\\Product")
         @field(resolver: "AddProductMutation")
 
     updateProduct(id: ID!, title: JSON, description: JSON): Product
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "update", model: "Domain\\Product\\Models\\Product")
         @field(resolver: "UpdateProductMutation")
 
     deleteProduct(id: ID): String
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "delete", model: "Domain\\Product\\Models\\Product")
         @field(resolver: "DeleteProductMutation")
 }

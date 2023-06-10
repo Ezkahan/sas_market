@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +12,18 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'Domain\Category\Models\Category'           => 'Domain\Category\Policies\CategoryPolicy',
+        'Domain\Banner\Models\Banner'               => 'Domain\Banner\Policies\BannerPolicy',
+        'Domain\Brand\Models\Brand'                 => 'Domain\Brand\Policies\BrandPolicy',
+        'Domain\Coupon\Models\Coupon'               => 'Domain\Coupon\Policies\CouponPolicy',
+        'Domain\Documentation\Models\Documentation' => 'Domain\Documentation\Policies\DocumentationPolicy',
+        'Domain\News\Models\News'                   => 'Domain\News\Policies\NewsPolicy',
+        'Domain\Order\Models\Order'                 => 'Domain\Order\Policies\OrderPolicy',
+        'Domain\Page\Models\Page'                   => 'Domain\Page\Policies\PagePolicy',
+        'Domain\Product\Models\Product'             => 'Domain\Product\Policies\ProductPolicy',
+        'Domain\Promotion\Models\Promotion'         => 'Domain\Promotion\Policies\PromotionPolicy',
+        'Domain\Subscriber\Models\Subscriber'       => 'Domain\Subscriber\Policies\SubscriberPolicy',
+        'Domain\User\Models\User'                   => 'Domain\User\Policies\UserPolicy',
     ];
 
     /**
@@ -24,7 +34,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
     }
 }

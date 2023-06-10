@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
-use Domain\Coupon\Models;
-use Hash;
 
 class User extends Authenticatable
 {
@@ -38,7 +37,7 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        static::creating(function($user) {
+        static::creating(function ($user) {
             $user->password = Hash::make($user->password);
         });
     }
@@ -53,11 +52,10 @@ class User extends Authenticatable
         $path = '/assets/images/users/';
         $photo = $this->photo;
 
-        if(is_file(public_path().$path.$photo))
-        {
-            return url('/').$path.$photo;
+        if (is_file(public_path() . $path . $photo)) {
+            return url('/') . $path . $photo;
         }
 
-        return url('/').'/assets/images/defaults/user.webp';
+        return url('/') . '/assets/images/defaults/user.webp';
     }
 }

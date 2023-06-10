@@ -4,6 +4,7 @@ namespace App\Http\GraphQL\Category\Mutations;
 
 use Domain\Category\Actions\AddCategoryAction;
 use Domain\Category\DTO\CategoryDTO;
+use Illuminate\Http\UploadedFile;
 
 final class AddCategoryMutation
 {
@@ -17,8 +18,8 @@ final class AddCategoryMutation
             $args['name'],
             $args['description'] ?? [],
             $args['parent_id'] ?? 0,
-            $args['icon'] ?? "",
-            $args['image'] ?? "",
+            $args['icon'] ?? null,
+            $args['image'] ?? null,
         );
 
         return app(AddCategoryAction::class)->run($data);

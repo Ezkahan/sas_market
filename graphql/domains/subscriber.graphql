@@ -17,6 +17,7 @@ enum SubscriberType {
 extend type Query {
     subscribers(orderBy: _ @orderBy(columns: ["id"])): Subscriber
         @guard
+        @can(ability: "fetch", model: "Domain\\Subscriber\\Models\\Subscriber")
         @paginate
 }
 

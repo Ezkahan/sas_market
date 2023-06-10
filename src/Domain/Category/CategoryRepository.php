@@ -17,24 +17,32 @@ class CategoryRepository
 
     public function save(CategoryDTO $data)
     {
-        return $category = $this->model->create($data->toArray());
+        $category = $this->model->create($data->toArray());
 
-        // if ($data['icon']) {
-        //     $this->saveIcon($category, $data['icon']);
-        // }
+        if ($data->icon) {
+            $this->saveIcon($category, $data->icon);
+        }
+
+        return $category;
     }
 
-    public function update(array $data, int $id)
+    public function update(CategoryDTO $data, int $id)
     {
         $category = $this->model->find($id);
-        $category->update($data);
 
-        return;
+        $category->update($data->toArray());
+
+        return $category;
     }
 
     public function saveIcon(Category $category, UploadedFile $icon)
     {
-        $path = saveImage($icon, $category->getTranslation('name', 'tm'), '/assets/images/categories/icons/');
+        $path = saveImage(
+            $icon,
+            $category->getTranslation('name', 'tm'),
+            '/assets/images/categories/icons/'
+        );
+
         return $category->update(['icon' => $path]);
     }
 

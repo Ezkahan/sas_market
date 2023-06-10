@@ -13,11 +13,16 @@ extend type Query {
 extend type Mutation {
     addNews(title: JSON!, description: JSON!, image: Upload): News
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "add", model: "Domain\\News\\Models\\News")
         @field(resolver: "AddNewsMutation")
+
+    updateNews(title: JSON!, description: JSON!, image: Upload): News
+        @guard
+        @can(ability: "update", model: "Domain\\News\\Models\\News")
+        @field(resolver: "UpdateNewsMutation")
 
     deleteNews(id: ID!): String
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "delete", model: "Domain\\News\\Models\\News")
         @field(resolver: "DeleteNewsMutation")
 }

@@ -19,11 +19,11 @@ extend type Mutation {
         ended_at: DateTime!
     ): Coupon
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "create", model: "Domain\\Coupon\\Models\\Coupon")
         @field(resolver: "CreateCouponMutation")
 
     deleteCoupon(id: ID!): String
         @guard
-        @guard(with: ["admin"])
+        @can(ability: "delete", model: "Domain\\Coupon\\Models\\Coupon")
         @field(resolver: "DeleteCouponMutation")
 }
