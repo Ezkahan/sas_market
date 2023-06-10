@@ -15,9 +15,10 @@ final class AddCategoryMutation
     {
         $data = new CategoryDTO(
             $args['name'],
-            $args['logo'],
-            $args['description'],
-            $args['parent_id'],
+            $args['description'] ?? [],
+            $args['parent_id'] ?? 0,
+            $args['icon'] ?? "",
+            $args['image'] ?? "",
         );
 
         return app(AddCategoryAction::class)->run($data);

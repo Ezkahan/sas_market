@@ -23,7 +23,8 @@ extend type Mutation {
         parent_id: ID
     ): Category
         @guard
-        @guard(with: ["admin"])
+        # @middleware(checks: ["admin"])
+        # @middleware(checks: ["auth:api"])
         @field(resolver: "AddCategoryMutation")
 
     updateCategory(
@@ -33,11 +34,11 @@ extend type Mutation {
         parent_id: ID
     ): Category
         @guard
-        @guard(with: ["admin"])
+        # @guard(with: ["admin"])
         @field(resolver: "UpdateCategoryMutation")
 
     deleteCategory(id: ID!): String
         @guard
-        @guard(with: ["admin"])
+        # @guard(with: ["admin"])
         @field(resolver: "DeleteCategoryMutation")
 }

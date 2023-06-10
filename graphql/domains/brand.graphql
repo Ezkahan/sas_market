@@ -14,11 +14,11 @@ extend type Query {
 extend type Mutation {
     addBrand(name: String!, logo: Upload, category_id: Int!): Brand
         @guard
-        @guard(with: ["admin"])
+        # @guard(with: ["admin"])
         @field(resolver: "AddBrandMutation")
 
     deleteBrand(id: ID!): String
         @guard
-        @guard(with: ["admin"])
+        # @guard(with: ["admin"])
         @field(resolver: "DeleteBrandMutation")
 }
