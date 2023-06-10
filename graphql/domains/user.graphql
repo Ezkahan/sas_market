@@ -15,6 +15,7 @@ type User {
 type LoginResponse {
     token: String
     message: String
+    user: User
 }
 
 type RegisterResponse {

@@ -26,8 +26,8 @@ final class LoginMutation
         $token = $user->createToken('sas_market')->plainTextToken;
 
         return [
-            'phone' => $user->phone,
             'token' => $token,
+            'user'  => $user,
         ];
     }
 
