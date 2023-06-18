@@ -18,8 +18,8 @@ extend type Mutation {
     addCategory(
         name: JSON!
         description: JSON
-        icon: Upload
-        image: Upload
+        icon: String
+        image: String
         parent_id: ID
     ): Category
         @guard

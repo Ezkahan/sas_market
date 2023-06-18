@@ -8,7 +8,7 @@ class BrandDTO
 {
     public function __construct(
         public readonly string $name,
-        public readonly UploadedFile $logo,
+        public readonly string $logo,
         public readonly int $category_id,
     ) {
     }
