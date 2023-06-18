@@ -2,20 +2,20 @@
 
 namespace Domain\Banner\DTO;
 
-use Domain\Banner\Enums\BannerEnum;
-
 class BannerDTO
 {
     public function __construct(
+        public readonly string $image,
         public readonly string $link,
         public readonly int $category_id,
-        public readonly BannerEnum $position,
+        public readonly string $position,
     ) {
     }
 
     public function toArray()
     {
         return [
+            'image'       => $this->image,
             'link'        => $this->link,
             'category_id' => $this->category_id,
             'position'    => $this->position,

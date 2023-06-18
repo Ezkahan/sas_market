@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('banners', function (Blueprint $table) {
             $table->increments('id');
             $table->string('link')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image_path')->nullable();
             $table->integer('visited_count')->default(0);
             $table->string('category_id')->nullable();
             $table->enum('position', [BannerEnum::values()])->default(BannerEnum::MAIN->value);

@@ -29,6 +29,7 @@ type RegisterResponse {
 extend type Query {
     users(orderBy: _ @orderBy(columns: ["id"])): [User!]! @paginate @guard
     user(id: ID @eq): User @find @guard
+    me: User @auth
 }
 
 type Mutation {

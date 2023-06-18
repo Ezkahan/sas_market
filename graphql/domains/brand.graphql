@@ -1,8 +1,8 @@
 type Brand {
     id: ID!
     name: String!
-    logo: String
-    category_id: Int!
+    logotype: String
+    category_id: ID
     category: Category @belongsTo
 }
 
@@ -12,7 +12,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    addBrand(name: String!, logo: Upload, category_id: Int!): Brand
+    addBrand(name: String!, logo: Upload!, category_id: ID!): Brand
         @guard
         @can(ability: "add", model: "Domain\\Brand\\Models\\Brand")
         @field(resolver: "AddBrandMutation")

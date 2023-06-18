@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use Domain\User\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Domain\Brand\Models\Brand;
 
-class BrandSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +15,9 @@ class BrandSeeder extends Seeder
      */
     public function run()
     {
-        return Brand::create([
-            'name' => 'Nike',
-            'category_id' => 1,
-            'logo' => 'logo_path',
+        return User::create([
+            'phone' => '99365990099',
+            'password' => '12345',
         ]);
     }
 }

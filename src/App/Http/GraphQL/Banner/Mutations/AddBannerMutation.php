@@ -14,6 +14,7 @@ final class AddBannerMutation
     public function __invoke($_, array $args)
     {
         $data = new BannerDTO(
+            $args['image'],
             $args['link'],
             $args['category_id'],
             $args['position'],

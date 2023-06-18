@@ -11,14 +11,10 @@ class Banner extends Model
 {
     protected $fillable = [
         'link',
-        'image',
+        'image_path',
         'visited_count',
         'category_id',
         'position',
-    ];
-
-    protected $casts = [
-        'position' => BannerEnum::class,
     ];
 
     public function category(): BelongsTo
@@ -28,7 +24,6 @@ class Banner extends Model
 
     public function getImageAttribute()
     {
-        return defaultImage();
-        // return is_file(public_path() . $this->image) ? url("/") . $this->image : defaultImage();
+        return is_file(public_path() . $this->image_path) ? url("/") . $this->image_path : defaultImage();
     }
 }

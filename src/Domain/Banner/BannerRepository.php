@@ -4,7 +4,6 @@ namespace Domain\Banner;
 
 use Domain\Banner\DTO\BannerDTO;
 use Domain\Banner\Models\Banner;
-use Illuminate\Http\UploadedFile;
 
 class BannerRepository
 {
@@ -19,17 +18,17 @@ class BannerRepository
     {
         $banner = $this->model->create($data->toArray());
 
-        if ($data['image']) {
-            $this->saveImage($banner, $data['image']);
+        if ($data->image) {
+            $this->saveImage($banner, $data->image);
         }
 
         return $banner;
     }
 
-    public function saveImage(Banner $banner, UploadedFile $image)
+    public function saveImage(Banner $banner, string $image)
     {
-        $path = saveImage($image, $banner->name, '/assets/images/banners/');
-        return $banner->update(['image' => $path]);
+        $path = saveImage($image, time(), '/assets/images/banners/');
+        return $banner->update(['image_path' => $path]);
     }
 
     public function delete(int $id): string

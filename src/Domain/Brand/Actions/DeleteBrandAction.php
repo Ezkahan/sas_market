@@ -3,8 +3,10 @@
 namespace Domain\Brand\Actions;
 
 use Domain\Brand\BrandRepository;
+use Exception;
 
-class DeleteBrandAction {
+class DeleteBrandAction
+{
     protected BrandRepository $repository;
 
     public function __construct(BrandRepository $repository)
@@ -16,8 +18,7 @@ class DeleteBrandAction {
     {
         try {
             return $this->repository->delete($id);
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             throw new Exception("Error not deleted");
         }
     }

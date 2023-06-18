@@ -2,7 +2,7 @@
 
 namespace App\Http\GraphQL\Brand\Mutations;
 
-use Domain\Brand\Actions\DeleteAction;
+use Domain\Brand\Actions\DeleteBrandAction;
 
 final class DeleteBrandMutation
 {
@@ -15,7 +15,7 @@ final class DeleteBrandMutation
         $id = $args["id"];
 
         if ($id) {
-            return app(DeleteAction::class)->run($id);
+            return app(DeleteBrandAction::class)->run($id);
         }
 
         return;

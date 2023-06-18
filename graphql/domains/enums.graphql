@@ -1,0 +1,5 @@
+enum BannerEnum {
+    TOP
+    MAIN
+    BOTTOM
+}

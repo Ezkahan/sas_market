@@ -18,11 +18,10 @@ class BrandRepository
 
     public function save(BrandDTO $data)
     {
-        $arr = Arr::only($data, ['name', 'category_id']);
-        $brand = $this->model->create($arr);
+        $brand = $this->model->create($data->toArray());
 
-        if ($data['logo']) {
-            $this->saveLogo($brand, $data['logo']);
+        if ($data->logo) {
+            $this->saveLogo($brand, $data->logo);
         }
 
         return;
