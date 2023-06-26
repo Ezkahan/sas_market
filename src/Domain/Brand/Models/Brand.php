@@ -12,7 +12,7 @@ class Brand extends Model
     protected $fillable = [
         'name',
         'category_id',
-        'logo',
+        'logo_path',
     ];
 
     protected $casts = [];
@@ -22,7 +22,7 @@ class Brand extends Model
         parent::boot();
 
         static::deleting(function ($brand) {
-            $logoPath = public_path($brand->logo);
+            $logoPath = public_path($brand->logo_path);
             is_file($logoPath) ? File::delete($logoPath) : null;
         });
     }
@@ -32,8 +32,8 @@ class Brand extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getLogotypeAttribute()
+    public function getLogoAttribute()
     {
-        return is_file(public_path($this->logo)) ? url("/") . $this->logo : defaultImage();
+        return is_file(public_path($this->logo_path)) ? url("/") . $this->logo_path : defaultImage();
     }
 }

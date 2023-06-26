@@ -14,7 +14,7 @@ class DeleteBannerAction
         $this->repository = $repository;
     }
 
-    public function run(array $data)
+    public function run(int $data)
     {
         try {
             return $this->repository->delete($data);

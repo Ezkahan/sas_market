@@ -1,7 +1,7 @@
 type Brand {
     id: ID!
     name: String!
-    logotype: String
+    logo: String
     category_id: ID
     category: Category @belongsTo
 }

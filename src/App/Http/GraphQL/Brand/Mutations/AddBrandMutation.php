@@ -4,7 +4,6 @@ namespace App\Http\GraphQL\Brand\Mutations;
 
 use Domain\Brand\Actions\AddBrandAction;
 use Domain\Brand\DTO\BrandDTO;
-use Illuminate\Support\Facades\Log;
 
 final class AddBrandMutation
 {

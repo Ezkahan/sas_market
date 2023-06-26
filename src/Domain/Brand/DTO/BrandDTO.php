@@ -2,8 +2,6 @@
 
 namespace Domain\Brand\DTO;
 
-use Illuminate\Http\UploadedFile;
-
 class BrandDTO
 {
     public function __construct(

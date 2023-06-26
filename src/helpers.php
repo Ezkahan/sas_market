@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 
 if (!function_exists('saveImage')) {

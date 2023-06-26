@@ -2,8 +2,8 @@ type Category {
     id: ID!
     name: JSON!
     description: JSON
-    icon: Upload
-    image: Upload
+    icon: String
+    image: String
     parent_id: ID
     category: Category @belongsTo
     visited_count: Int

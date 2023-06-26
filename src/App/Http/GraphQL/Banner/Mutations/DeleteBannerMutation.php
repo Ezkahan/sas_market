@@ -2,7 +2,7 @@
 
 namespace App\Http\GraphQL\Banner\Mutations;
 
-use Domain\Banner\Actions\DeleteAction;
+use Domain\Banner\Actions\DeleteBannerAction;
 
 final class DeleteBannerMutation
 {
@@ -14,7 +14,7 @@ final class DeleteBannerMutation
     {
         $id = $args["id"];
         if ($id) {
-            return app(DeleteAction::class)->run($id);
+            return app(DeleteBannerAction::class)->run($id);
         }
         return;
     }

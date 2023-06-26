@@ -18,10 +18,21 @@ type Product {
 extend type Query {
     products(orderBy: _ @orderBy(columns: ["id"])): [Product!]! @paginate
     products(id: ID @eq): Product! @find
+    searchProduct(name: String): Product! @find
 }
 
 extend type Mutation {
-    addProduct(title: JSON, description: JSON): Product
+    addProduct(
+        title: JSON
+        description: JSON
+        code: String
+        brand_id: ID
+        category_id: ID
+        price: String
+        percent: String
+        in_stock: Boolean
+        status: Boolean
+    ): Product
         @guard
         @can(ability: "add", model: "Domain\\Product\\Models\\Product")
         @field(resolver: "AddProductMutation")

@@ -17,14 +17,14 @@ class Category extends Model
     protected $fillable = [
         'name',
         'description',
-        'icon',
-        'image',
+        'icon_path',
+        'image_path',
         'parent_id',
         'visited_count',
     ];
 
     protected $casts = [
-        'name' => 'json',
+        'name'        => 'json',
         'description' => 'json',
     ];
 
@@ -42,5 +42,15 @@ class Category extends Model
     public function getDescriptionAttribute()
     {
         return $this->getTranslations('description');
+    }
+
+    public function getIconAttribute()
+    {
+        return is_file(public_path($this->icon_path)) ? url("/") . $this->icon_path : defaultImage();
+    }
+
+    public function getImageAttribute()
+    {
+        return is_file(public_path($this->image_path)) ? url("/") . $this->image_path : defaultImage();
     }
 }

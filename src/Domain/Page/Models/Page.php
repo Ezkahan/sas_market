@@ -18,6 +18,7 @@ class Promotion extends Model
         'title',
         'description',
         'image',
+        'position',
     ];
 
     protected $casts = [

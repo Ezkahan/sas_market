@@ -4,7 +4,6 @@ namespace Domain\Category;
 
 use Domain\Category\DTO\CategoryDTO;
 use Domain\Category\Models\Category;
-use Illuminate\Http\UploadedFile;
 
 class CategoryRepository
 {
@@ -23,6 +22,10 @@ class CategoryRepository
             $this->saveIcon($category, $data->icon);
         }
 
+        if ($data->image) {
+            $this->saveImage($category, $data->image);
+        }
+
         return $category;
     }
 
@@ -35,21 +38,21 @@ class CategoryRepository
         return $category;
     }
 
-    public function saveIcon(Category $category, UploadedFile $icon)
+    public function saveIcon(Category $category, string $icon)
     {
         $path = saveImage(
             $icon,
-            $category->getTranslation('name', 'tm'),
+            time(),
             '/assets/images/categories/icons/'
         );
 
-        return $category->update(['icon' => $path]);
+        return $category->update(['icon_path' => $path]);
     }
 
-    public function saveImage(Category $category, UploadedFile $image)
+    public function saveImage(Category $category, string $image)
     {
-        $path = saveImage($image, $category->getTranslation('name', 'tm'), '/assets/images/categories/');
-        return $category->update(['image' => $path]);
+        $path = saveImage($image, time(), '/assets/images/categories/');
+        return $category->update(['image_path' => $path]);
     }
 
     public function delete($id): string

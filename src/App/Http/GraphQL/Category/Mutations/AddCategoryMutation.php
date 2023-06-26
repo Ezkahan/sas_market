@@ -4,7 +4,6 @@ namespace App\Http\GraphQL\Category\Mutations;
 
 use Domain\Category\Actions\AddCategoryAction;
 use Domain\Category\DTO\CategoryDTO;
-use Illuminate\Http\UploadedFile;
 
 final class AddCategoryMutation
 {

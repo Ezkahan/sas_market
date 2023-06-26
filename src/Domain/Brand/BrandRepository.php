@@ -22,13 +22,13 @@ class BrandRepository
             $this->saveLogo($brand, $data->logo);
         }
 
-        return;
+        return $brand;
     }
 
     public function saveLogo(Brand $brand, string $logo)
     {
         $path = saveImage($logo, $brand->name, '/assets/images/brands/');
-        return $brand->update(['logo' => $path]);
+        return $brand->update(['logo_path' => $path]);
     }
 
     public function delete($id): string

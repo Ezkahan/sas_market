@@ -11,5 +11,14 @@ final class AddProductMutation
     public function __invoke($_, array $args)
     {
         // TODO implement the resolver
+        // title
+        // description
+        // code
+        // brand_id
+        // category_id
+        // price
+        // percent
+        // in_stock
+        // status
     }
 }
