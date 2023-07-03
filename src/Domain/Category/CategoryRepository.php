@@ -4,6 +4,7 @@ namespace Domain\Category;
 
 use Domain\Category\DTO\CategoryDTO;
 use Domain\Category\Models\Category;
+use Illuminate\Http\UploadedFile;
 
 class CategoryRepository
 {
@@ -38,7 +39,7 @@ class CategoryRepository
         return $category;
     }
 
-    public function saveIcon(Category $category, string $icon)
+    public function saveIcon(Category $category, UploadedFile $icon)
     {
         $path = saveImage(
             $icon,
@@ -49,7 +50,7 @@ class CategoryRepository
         return $category->update(['icon_path' => $path]);
     }
 
-    public function saveImage(Category $category, string $image)
+    public function saveImage(Category $category, UploadedFile $image)
     {
         $path = saveImage($image, time(), '/assets/images/categories/');
         return $category->update(['image_path' => $path]);

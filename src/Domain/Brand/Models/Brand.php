@@ -32,7 +32,7 @@ class Brand extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getLogoAttribute()
+    public function getLogoUrlAttribute()
     {
         return is_file(public_path($this->logo_path)) ? url("/") . $this->logo_path : defaultImage();
     }

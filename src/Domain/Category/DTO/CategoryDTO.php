@@ -2,14 +2,16 @@
 
 namespace Domain\Category\DTO;
 
+use Illuminate\Http\UploadedFile;
+
 class CategoryDTO
 {
     public function __construct(
         public readonly object $name,
         public readonly object $description,
         public readonly int $parent_id,
-        public readonly ?string $icon,
-        public readonly ?string $image,
+        public readonly ?UploadedFile $icon,
+        public readonly ?UploadedFile $image,
     ) {
     }
 

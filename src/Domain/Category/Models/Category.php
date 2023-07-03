@@ -44,12 +44,12 @@ class Category extends Model
         return $this->getTranslations('description');
     }
 
-    public function getIconAttribute()
+    public function getIconUrlAttribute()
     {
         return is_file(public_path($this->icon_path)) ? url("/") . $this->icon_path : defaultImage();
     }
 
-    public function getImageAttribute()
+    public function getImageUrlAttribute()
     {
         return is_file(public_path($this->image_path)) ? url("/") . $this->image_path : defaultImage();
     }

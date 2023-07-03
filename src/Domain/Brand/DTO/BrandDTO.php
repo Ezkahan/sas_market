@@ -2,11 +2,13 @@
 
 namespace Domain\Brand\DTO;
 
+use Illuminate\Http\UploadedFile;
+
 class BrandDTO
 {
     public function __construct(
         public readonly string $name,
-        public readonly string $logo,
+        public readonly UploadedFile $logo,
         public readonly int $category_id,
     ) {
     }

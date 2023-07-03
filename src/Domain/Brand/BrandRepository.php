@@ -4,6 +4,7 @@ namespace Domain\Brand;
 
 use Domain\Brand\DTO\BrandDTO;
 use Domain\Brand\Models\Brand;
+use Illuminate\Http\UploadedFile;
 
 class BrandRepository
 {
@@ -25,7 +26,7 @@ class BrandRepository
         return $brand;
     }
 
-    public function saveLogo(Brand $brand, string $logo)
+    public function saveLogo(Brand $brand, UploadedFile $logo)
     {
         $path = saveImage($logo, $brand->name, '/assets/images/brands/');
         return $brand->update(['logo_path' => $path]);

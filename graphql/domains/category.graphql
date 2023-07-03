@@ -2,8 +2,10 @@ type Category {
     id: ID!
     name: JSON!
     description: JSON
-    icon: String
-    image: String
+    icon: Upload
+    image: Upload
+    icon_url: String
+    image_url: String
     parent_id: ID
     category: Category @belongsTo
     visited_count: Int
@@ -18,8 +20,8 @@ extend type Mutation {
     addCategory(
         name: JSON!
         description: JSON
-        icon: String
-        image: String
+        icon: Upload
+        image: Upload
         parent_id: ID
     ): Category
         @guard
