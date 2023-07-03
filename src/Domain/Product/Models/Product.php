@@ -5,6 +5,8 @@ namespace Domain\Product\Models;
 use Domain\Brand\Models\Brand;
 use Domain\Category\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
@@ -35,14 +37,19 @@ class Product extends Model
         'description' => 'json',
     ];
 
-    public function brand()
+    public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);
     }
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class);
     }
 
     public function getTitleAttribute()

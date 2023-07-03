@@ -1,9 +1,11 @@
 type Banner {
     id: ID!
     link: String
-    image: String
+    image: Upload
+    image_url: String
     visited_count: Int
     position: BannerEnum!
+    type: BannerTypeEnum!
     category_id: ID
     category: Category @belongsTo
 }
@@ -15,10 +17,11 @@ extend type Query {
 
 extend type Mutation {
     addBanner(
-        image: String
+        image: Upload
         link: String
         category_id: ID!
         position: String!
+        type: String!
     ): Banner
         @guard
         @can(ability: "add", model: "Domain\\Banner\\Models\\Banner")

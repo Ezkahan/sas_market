@@ -17,8 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->json('name')->nullable();
             $table->json('description')->nullable();
-            $table->string('icon')->nullable();
-            $table->string('image')->nullable();
+            $table->string('icon_path')->nullable();
+            $table->string('image_path')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->integer('visited_count')->default(0);
             $table->timestamps();

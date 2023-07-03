@@ -3,7 +3,6 @@
 namespace Domain\Banner\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Domain\Banner\Enums\BannerEnum;
 use Domain\Category\Models\Category;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -15,6 +14,7 @@ class Banner extends Model
         'visited_count',
         'category_id',
         'position',
+        'type',
     ];
 
     public function category(): BelongsTo
@@ -22,7 +22,7 @@ class Banner extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function getImageAttribute()
+    public function getImageUrlAttribute()
     {
         return is_file(public_path() . $this->image_path) ? url("/") . $this->image_path : defaultImage();
     }

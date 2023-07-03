@@ -3,3 +3,8 @@ enum BannerEnum {
     MAIN
     BOTTOM
 }
+
+enum BannerTypeEnum {
+    WEB
+    MOBILE
+}

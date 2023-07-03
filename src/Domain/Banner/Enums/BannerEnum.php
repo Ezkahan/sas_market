@@ -4,7 +4,7 @@ namespace Domain\Banner\Enums;
 
 use App\Traits\EnumToArray;
 
-enum BannerEnum:string
+enum BannerEnum: string
 {
     use EnumToArray;
 

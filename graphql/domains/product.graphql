@@ -13,6 +13,7 @@ type Product {
     status: Boolean
     stock: Int
     preview: Int
+    images: [Upload!]! @hasMany
 }
 
 extend type Query {
@@ -30,8 +31,7 @@ extend type Mutation {
         category_id: ID
         price: String
         percent: String
-        in_stock: Boolean
-        status: Boolean
+        images: [Upload!]!
     ): Product
         @guard
         @can(ability: "add", model: "Domain\\Product\\Models\\Product")

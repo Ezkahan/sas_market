@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21620661973be0dad3a7bdbff7e3b4e0",
+    "content-hash": "d7d3c2877d31737e132116326f6feb41",
     "packages": [
         {
             "name": "brick/math",
@@ -979,16 +979,16 @@
         },
         {
             "name": "haydenpierce/class-finder",
-            "version": "0.5.2",
+            "version": "0.5.3",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:hpierce1102/ClassFinder.git",
-                "reference": "04496c25657923afe928483d3a18c1b80ea6438b"
+                "reference": "40703445c18784edcc6411703e7c3869af11ec8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=04496c25657923afe928483d3a18c1b80ea6438b",
-                "reference": "04496c25657923afe928483d3a18c1b80ea6438b",
+                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=40703445c18784edcc6411703e7c3869af11ec8c",
+                "reference": "40703445c18784edcc6411703e7c3869af11ec8c",
                 "shasum": ""
             },
             "require": {
@@ -1017,7 +1017,7 @@
                 }
             ],
             "description": "A library that can provide of a list of classes in a given namespace",
-            "time": "2023-05-01T21:31:20+00:00"
+            "time": "2023-06-18T17:43:01+00:00"
         },
         {
             "name": "intervention/image",
@@ -1105,16 +1105,16 @@
         },
         {
             "name": "laragraph/utils",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laragraph/utils.git",
-                "reference": "a70d4f2d0c8a0256e8650a80dd52a0806ad11a6b"
+                "reference": "36340c62ed90bdd1a44de168e199bbc799618cb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laragraph/utils/zipball/a70d4f2d0c8a0256e8650a80dd52a0806ad11a6b",
-                "reference": "a70d4f2d0c8a0256e8650a80dd52a0806ad11a6b",
+                "url": "https://api.github.com/repos/laragraph/utils/zipball/36340c62ed90bdd1a44de168e199bbc799618cb8",
+                "reference": "36340c62ed90bdd1a44de168e199bbc799618cb8",
                 "shasum": ""
             },
             "require": {
@@ -1159,7 +1159,7 @@
                 "issues": "https://github.com/laragraph/utils/issues",
                 "source": "https://github.com/laragraph/utils"
             },
-            "time": "2023-03-20T10:20:11+00:00"
+            "time": "2023-05-16T12:51:35+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2629,16 +2629,16 @@
         },
         {
             "name": "nuwave/lighthouse",
-            "version": "v6.8.0",
+            "version": "v6.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nuwave/lighthouse.git",
-                "reference": "b71a1d7720fcb8cc31efdaafdf22b5dd324a4be7"
+                "reference": "36142e61f8b1f279e56c8ddd40a09bfa337c53f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/b71a1d7720fcb8cc31efdaafdf22b5dd324a4be7",
-                "reference": "b71a1d7720fcb8cc31efdaafdf22b5dd324a4be7",
+                "url": "https://api.github.com/repos/nuwave/lighthouse/zipball/36142e61f8b1f279e56c8ddd40a09bfa337c53f5",
+                "reference": "36142e61f8b1f279e56c8ddd40a09bfa337c53f5",
                 "shasum": ""
             },
             "require": {
@@ -2661,7 +2661,7 @@
             "require-dev": {
                 "algolia/algoliasearch-client-php": "^3 || ^4",
                 "bensampo/laravel-enum": "^5 || ^6",
-                "dms/phpunit-arraysubset-asserts": "^0.4",
+                "dms/phpunit-arraysubset-asserts": "^0.4 || ^0.5",
                 "ergebnis/composer-normalize": "^2.2.2",
                 "fakerphp/faker": "^1.21",
                 "laravel/framework": "^9 || ^10",
@@ -2680,7 +2680,7 @@
                 "phpstan/phpstan": "^1.10.3",
                 "phpstan/phpstan-mockery": "^1.1",
                 "phpstan/phpstan-phpunit": "^1.1.1",
-                "phpunit/phpunit": "^9.6.4",
+                "phpunit/phpunit": "^9.6.4 || ^10",
                 "predis/predis": "^1.1 || ^2.1",
                 "pusher/pusher-php-server": "^5 || ^6 || ^7.0.2",
                 "rector/rector": "^0.15.18",
@@ -2755,7 +2755,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2023-04-18T09:22:36+00:00"
+            "time": "2023-06-26T07:36:45+00:00"
         },
         {
             "name": "phpoption/phpoption",

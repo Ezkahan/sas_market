@@ -4,6 +4,7 @@ namespace Domain\Banner;
 
 use Domain\Banner\DTO\BannerDTO;
 use Domain\Banner\Models\Banner;
+use Illuminate\Http\UploadedFile;
 
 class BannerRepository
 {
@@ -25,7 +26,7 @@ class BannerRepository
         return $banner;
     }
 
-    public function saveImage(Banner $banner, string $image)
+    public function saveImage(Banner $banner, UploadedFile $image)
     {
         $path = saveImage($image, time(), '/assets/images/banners/');
         return $banner->update(['image_path' => $path]);

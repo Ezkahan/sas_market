@@ -1,18 +1,27 @@
 <?php
 
+use Illuminate\Http\UploadedFile;
 use Intervention\Image\Facades\Image;
 
 if (!function_exists('saveImage')) {
-    function saveImage(string $image, string $name, string $path)
+    function saveImage(UploadedFile $image, string $name, string $path)
     {
         $file = Image::make($image);
         $newName = $name . '_' . time() . '.webp';
         $file->save(public_path($path) . $newName, 80, 'webp');
-
         return $path . $newName;
     }
 }
 
+if (!function_exists('saveBlobImage')) {
+    function saveBlobImage(string $image, string $name, string $path)
+    {
+        $file = Image::make($image);
+        $newName = $name . '_' . time() . '.webp';
+        $file->save(public_path($path) . $newName, 80, 'webp');
+        return $path . $newName;
+    }
+}
 
 if (!function_exists("defaultImage")) {
     function defaultImage()

@@ -18,6 +18,7 @@ final class AddBannerMutation
             $args['link'],
             $args['category_id'],
             $args['position'],
+            $args['type'],
         );
 
         return app(SaveBannerAction::class)->run($data);

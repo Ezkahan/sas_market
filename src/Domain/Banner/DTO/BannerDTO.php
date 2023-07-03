@@ -2,13 +2,16 @@
 
 namespace Domain\Banner\DTO;
 
+use Illuminate\Http\UploadedFile;
+
 class BannerDTO
 {
     public function __construct(
-        public readonly string $image,
+        public readonly UploadedFile $image,
         public readonly string $link,
         public readonly int $category_id,
         public readonly string $position,
+        public readonly string $type,
     ) {
     }
 
@@ -19,6 +22,7 @@ class BannerDTO
             'link'        => $this->link,
             'category_id' => $this->category_id,
             'position'    => $this->position,
+            'type'        => $this->type,
         ];
     }
 }
