@@ -17,7 +17,12 @@ class CategoryRepository
 
     public function save(CategoryDTO $data)
     {
-        $category = $this->model->create($data->toArray());
+        if ($data->id) {
+            $category = $this->model->find($data->id);
+            $category->update($data->toArray());
+        } else {
+            $category = $this->model->create($data->toArray());
+        }
 
         if ($data->icon) {
             $this->saveIcon($category, $data->icon);
@@ -41,6 +46,7 @@ class CategoryRepository
 
     public function saveIcon(Category $category, UploadedFile $icon)
     {
+        $category->deleteIcon();
         $path = saveImage(
             $icon,
             time(),
@@ -52,6 +58,7 @@ class CategoryRepository
 
     public function saveImage(Category $category, UploadedFile $image)
     {
+        $category->deleteImage();
         $path = saveImage($image, time(), '/assets/images/categories/');
         return $category->update(['image_path' => $path]);
     }

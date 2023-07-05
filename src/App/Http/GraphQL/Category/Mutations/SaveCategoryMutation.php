@@ -2,10 +2,10 @@
 
 namespace App\Http\GraphQL\Category\Mutations;
 
-use Domain\Category\Actions\UpdateCategoryAction;
+use Domain\Category\Actions\SaveCategoryAction;
 use Domain\Category\DTO\CategoryDTO;
 
-final class UpdateCategoryMutation
+final class SaveCategoryMutation
 {
     /**
      * @param  null  $_
@@ -14,6 +14,7 @@ final class UpdateCategoryMutation
     public function __invoke($_, array $args)
     {
         $data = new CategoryDTO(
+            $args['id'],
             $args['name'],
             $args['description'] ?? [],
             $args['parent_id'] ?? 0,
@@ -21,6 +22,6 @@ final class UpdateCategoryMutation
             $args['image'] ?? null,
         );
 
-        return app(UpdateCategoryAction::class)->run($data, $args["id"]);
+        return app(SaveCategoryAction::class)->run($data);
     }
 }

@@ -17,7 +17,12 @@ class BrandRepository
 
     public function save(BrandDTO $data)
     {
-        $brand = $this->model->create($data->toArray());
+        if ($data->id) {
+            $brand = $this->model->find($data->id);
+            $brand->update($data->toArray());
+        } else {
+            $brand = $this->model->create($data->toArray());
+        }
 
         if ($data->logo) {
             $this->saveLogo($brand, $data->logo);
@@ -28,6 +33,7 @@ class BrandRepository
 
     public function saveLogo(Brand $brand, UploadedFile $logo)
     {
+        $brand->deleteLogo();
         $path = saveImage($logo, $brand->name, '/assets/images/brands/');
         return $brand->update(['logo_path' => $path]);
     }

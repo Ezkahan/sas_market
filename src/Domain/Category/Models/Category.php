@@ -3,6 +3,7 @@
 namespace Domain\Category\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
@@ -52,5 +53,25 @@ class Category extends Model
     public function getImageUrlAttribute()
     {
         return is_file(public_path($this->image_path)) ? url("/") . $this->image_path : defaultImage();
+    }
+
+    public function deleteIcon()
+    {
+        $iconPath = public_path($this->icon_path);
+        if (is_file($iconPath)) {
+            File::delete($iconPath);
+            $this->update(['icon_path' => null]);
+        }
+        return;
+    }
+
+    public function deleteImage()
+    {
+        $imagePath = public_path($this->image_path);
+        if (is_file($imagePath)) {
+            File::delete($imagePath);
+            $this->update(['image_path' => null]);
+        }
+        return;
     }
 }

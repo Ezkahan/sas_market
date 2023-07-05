@@ -13,10 +13,10 @@ extend type Query {
 }
 
 extend type Mutation {
-    addBrand(name: String!, logo: Upload!, category_id: ID!): Brand
+    saveBrand(id: ID, logo: Upload, name: String!, category_id: ID!): Brand
         @guard
         @can(ability: "add", model: "Domain\\Brand\\Models\\Brand")
-        @field(resolver: "AddBrandMutation")
+        @field(resolver: "SaveBrandMutation")
 
     deleteBrand(id: ID!): String
         @guard

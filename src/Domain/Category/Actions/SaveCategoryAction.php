@@ -6,7 +6,7 @@ use Domain\Category\CategoryRepository;
 use Domain\Category\DTO\CategoryDTO;
 use Exception;
 
-class AddCategoryAction
+class SaveCategoryAction
 {
     protected CategoryRepository $repository;
 

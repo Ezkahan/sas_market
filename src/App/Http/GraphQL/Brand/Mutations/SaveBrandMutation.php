@@ -2,10 +2,10 @@
 
 namespace App\Http\GraphQL\Brand\Mutations;
 
-use Domain\Brand\Actions\AddBrandAction;
+use Domain\Brand\Actions\SaveBrandAction;
 use Domain\Brand\DTO\BrandDTO;
 
-final class AddBrandMutation
+final class SaveBrandMutation
 {
     /**
      * @param  null  $_
@@ -14,11 +14,12 @@ final class AddBrandMutation
     public function __invoke($_, array $args)
     {
         $data = new BrandDTO(
+            $args['id'],
             $args['name'],
-            $args['logo'],
+            $args['logo'] ?? null,
             $args['category_id'],
         );
 
-        return app(AddBrandAction::class)->run($data);
+        return app(SaveBrandAction::class)->run($data);
     }
 }

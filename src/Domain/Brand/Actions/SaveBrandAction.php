@@ -6,7 +6,7 @@ use Domain\Brand\BrandRepository;
 use Domain\Brand\DTO\BrandDTO;
 use Exception;
 
-class AddBrandAction
+class SaveBrandAction
 {
     protected BrandRepository $repository;
 

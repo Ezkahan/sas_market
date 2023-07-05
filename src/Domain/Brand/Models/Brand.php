@@ -36,4 +36,14 @@ class Brand extends Model
     {
         return is_file(public_path($this->logo_path)) ? url("/") . $this->logo_path : defaultImage();
     }
+
+    public function deleteLogo()
+    {
+        $logoPath = public_path($this->logo_path);
+        if (is_file($logoPath)) {
+            File::delete($logoPath);
+            $this->update(['logo_path' => null]);
+        }
+        return;
+    }
 }

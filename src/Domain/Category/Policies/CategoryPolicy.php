@@ -9,12 +9,7 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user)
-    {
-        return true;
-    }
-
-    public function update(User $user)
+    public function save(User $user)
     {
         return true;
     }

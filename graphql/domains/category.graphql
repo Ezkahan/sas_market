@@ -17,7 +17,8 @@ extend type Query {
 }
 
 extend type Mutation {
-    addCategory(
+    saveCategory(
+        id: ID
         name: JSON!
         description: JSON
         icon: Upload
@@ -25,18 +26,8 @@ extend type Mutation {
         parent_id: ID
     ): Category
         @guard
-        @can(ability: "create", model: "Domain\\Category\\Models\\Category")
-        @field(resolver: "AddCategoryMutation")
-
-    updateCategory(
-        id: ID! @eq
-        name: JSON!
-        description: JSON
-        parent_id: ID
-    ): Category
-        @guard
-        @can(ability: "update", model: "Domain\\Category\\Models\\Category")
-        @field(resolver: "UpdateCategoryMutation")
+        @can(ability: "save", model: "Domain\\Category\\Models\\Category")
+        @field(resolver: "SaveCategoryMutation")
 
     deleteCategory(id: ID!): String
         @guard
