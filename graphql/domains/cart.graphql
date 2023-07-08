@@ -1,0 +1,22 @@
+type Cart {
+    id: ID!
+    user: User @belongsTo
+    products: [CartProduct!]! @hasMany
+}
+
+type CartProduct {
+    product: Product @belongsTo
+    quantity: Int
+    price: Int
+    discount_price: Int
+}
+
+extend type Query {
+    getCart(type: String): [Cart!]! @field(resolver: "GetCartQuery")
+}
+
+extend type Mutation {
+    addToCart(product_id: ID!, quantity: Int!): Cart
+        @guard
+        @field(resolver: "AddToCartMutation")
+}

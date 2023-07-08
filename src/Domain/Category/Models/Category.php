@@ -3,6 +3,8 @@
 namespace Domain\Category\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\File;
 use Spatie\Translatable\HasTranslations;
 
@@ -34,6 +36,15 @@ class Category extends Model
         'updated_at',
     ];
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
 
     public function getNameAttribute()
     {

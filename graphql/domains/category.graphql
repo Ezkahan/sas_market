@@ -8,6 +8,7 @@ type Category {
     image_url: String
     parent_id: ID
     category: Category @belongsTo
+    products: [Product] @hasMany
     visited_count: Int
 }
 

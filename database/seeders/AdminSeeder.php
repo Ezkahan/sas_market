@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Domain\User\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -16,8 +15,8 @@ class AdminSeeder extends Seeder
     public function run()
     {
         return User::create([
-            'phone' => '99365990099',
-            'password' => '12345',
+            'phone' => '99365123456',
+            'password' => 'developer',
         ]);
     }
 }

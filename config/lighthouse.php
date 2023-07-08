@@ -161,6 +161,7 @@ return [
             'Domain\\News\\Models',
             'Domain\\User\\Models',
             'Domain\\Product\\Models',
+            'Domain\\Cart\\Models',
         ],
         'queries' => [
             'App\\Http\\GraphQL\\Banner\\Queries',
@@ -169,6 +170,7 @@ return [
             'App\\Http\\GraphQL\\Coupon\\Queries',
             'App\\Http\\GraphQL\\Promotion\\Queries',
             'App\\Http\\GraphQL\\User\\Queries',
+            'App\\Http\\GraphQL\\Cart\\Queries',
         ],
         'mutations' => [
             'App\\Http\\GraphQL\\Banner\\Mutations',
@@ -181,6 +183,7 @@ return [
             'App\\Http\\GraphQL\\User\\Mutations',
             'App\\Http\\GraphQL\\News\\Mutations',
             'App\\Http\\GraphQL\\Product\\Mutations',
+            'App\\Http\\GraphQL\\Cart\\Mutations',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',
