@@ -1,0 +1,22 @@
+type Setting {
+    id: ID!
+    key: String
+    value: JSON!
+}
+
+extend type Query {
+    settings(orderBy: _ @orderBy(columns: ["id"])): [Setting!]! @paginate
+    setting(key: String! @eq): Setting! @find
+}
+
+extend type Mutation {
+    addSetting(key: String!, value: JSON!): Setting
+        @guard
+        @can(ability: "add", model: "Domain\\Setting\\Models\\Setting")
+        @field(resolver: "AddSettingMutation")
+
+    deleteSetting(id: ID): String
+        @guard
+        @can(ability: "delete", model: "Domain\\Setting\\Models\\Setting")
+        @field(resolver: "DeleteSettingMutation")
+}

@@ -14,7 +14,7 @@ final class SaveCategoryMutation
     public function __invoke($_, array $args)
     {
         $data = new CategoryDTO(
-            $args['id'],
+            $args['id'] ?? null,
             $args['name'],
             $args['description'] ?? [],
             $args['parent_id'] ?? 0,
