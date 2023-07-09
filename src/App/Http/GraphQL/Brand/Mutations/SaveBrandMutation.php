@@ -14,7 +14,7 @@ final class SaveBrandMutation
     public function __invoke($_, array $args)
     {
         $data = new BrandDTO(
-            $args['id'],
+            $args['id'] ?? null,
             $args['name'],
             $args['logo'] ?? null,
             $args['category_id'],

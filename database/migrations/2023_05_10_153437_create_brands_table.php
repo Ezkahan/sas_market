@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('category_id');
-            $table->string('logo')->nullable();
+            $table->string('logo_path')->nullable();
             $table->timestamps();
         });
     }
