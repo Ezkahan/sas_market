@@ -24,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         'Domain\Promotion\Models\Promotion'         => 'Domain\Promotion\Policies\PromotionPolicy',
         'Domain\Subscriber\Models\Subscriber'       => 'Domain\Subscriber\Policies\SubscriberPolicy',
         'Domain\User\Models\User'                   => 'Domain\User\Policies\UserPolicy',
+        'Domain\Setting\Models\Setting'             => 'Domain\Setting\Policies\SettingPolicy',
     ];
 
     /**

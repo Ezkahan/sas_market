@@ -16,7 +16,18 @@ class SettingRepository
 
     public function add($data)
     {
-        Log::info($data);
+        $setting = $this->findByKey($data["key"]);
+
+        if (!$setting) {
+            return $this->model->create($data);
+        }
+
+        $setting->update(['value' => $data["value"]]);
+    }
+
+    public function findByKey(string $key)
+    {
+        return $this->model->where('key', '=', $key)->first();
     }
 
     public function delete($id): string

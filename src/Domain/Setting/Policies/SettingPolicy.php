@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Subscriber\Policies;
+namespace Domain\Setting\Policies;
 
 use Domain\User\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
