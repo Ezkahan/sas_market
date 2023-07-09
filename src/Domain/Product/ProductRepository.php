@@ -34,11 +34,11 @@ class ProductRepository
     public function saveImages(Product $product, $images)
     {
         $path = '/assets/images/products/';
-        Log::info($product);
+
         foreach ($images as $key => $image) {
             $filename = saveImage($image, $key, $path);
             $product->images()->create([
-                'image_path' => $path . $filename
+                'image_path' => $filename
             ]);
         }
     }

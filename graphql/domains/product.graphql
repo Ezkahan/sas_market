@@ -3,17 +3,21 @@ type Product {
     title: JSON
     description: JSON
     code: String
-    brand_id: ID
     brand: Brand
-    category_id: ID
-    category: ID
+    category: Category
     price: String
     percent: String
     in_stock: Boolean
     status: Boolean
     stock: Int
     preview: Int
-    images: [Upload!]! @hasMany
+    images: [ProductImage] @hasMany
+}
+
+type ProductImage {
+    id: ID
+    url: String
+    product: Product
 }
 
 extend type Query {

@@ -39,12 +39,22 @@ class Category extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'parent_id', 'id');
+        return $this->belongsTo(Category::class, 'id', 'parent_id');
     }
 
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function scopeMainCategories()
+    {
+        return $this->where('parent_id', 0);
+    }
+
+    public function scopeSubCategories()
+    {
+        return $this->where('parent_id', '!=', 0);
     }
 
     public function getNameAttribute()

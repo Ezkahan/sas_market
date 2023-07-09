@@ -61,4 +61,9 @@ class Product extends Model
     {
         return $this->getTranslations('description');
     }
+
+    public function getImagesAttribute()
+    {
+        return $this->images;
+    }
 }
