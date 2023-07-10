@@ -14,7 +14,8 @@ type Category {
 
 extend type Query {
     category(id: ID! @eq): Category! @find
-    categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
+    categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]! @paginate
+    mainCategories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
         @field(resolver: "GetMainCategoriesQuery")
     subcategories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
         @field(resolver: "GetSubCategoriesQuery")
