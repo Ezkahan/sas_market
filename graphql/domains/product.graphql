@@ -6,11 +6,14 @@ type Product {
     brand: Brand
     category: Category
     price: String
-    percent: String
+    discount_type: String
+    discount_price: Int
+    discount_amount: Int
     in_stock: Boolean
     status: Boolean
     stock: Int
     preview: Int
+    image: String
     images: [ProductImage] @hasMany
 }
 
@@ -34,7 +37,8 @@ extend type Mutation {
         brand_id: ID
         category_id: ID
         price: String
-        percent: String
+        discount_type: String
+        discount_amount: Int
         images: [Upload!]!
     ): Product
         @guard

@@ -16,12 +16,13 @@ final class AddProductMutation
     {
         $data = new ProductDTO(
             $args['title'],
-            $args['description'],
+            $args['description'] ?? null,
             $args['code'],
             $args['brand_id'],
             $args['category_id'],
             $args['price'],
-            $args['percent'],
+            $args['discount_type'],
+            $args['discount_amount'],
             $args['images'],
         );
 

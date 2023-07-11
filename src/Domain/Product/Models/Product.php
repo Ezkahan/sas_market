@@ -4,6 +4,7 @@ namespace Domain\Product\Models;
 
 use Domain\Brand\Models\Brand;
 use Domain\Category\Models\Category;
+use Domain\Product\Enums\DiscountTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,7 +26,8 @@ class Product extends Model
         'brand_id',
         'category_id',
         'price',
-        'percent',
+        'discount_amount',
+        'discount_type',
         'in_stock',
         'status',
         'stock',
@@ -65,5 +67,33 @@ class Product extends Model
     public function getImagesAttribute()
     {
         return $this->images;
+    }
+
+    public function getImageAttribute()
+    {
+        $firstImage = $this->images()->first();
+
+        if ($firstImage) {
+            $imgPath = $firstImage->image_path;
+            return is_file(public_path() . $imgPath) ? url('/') . $imgPath : defaultImage();
+        }
+
+        return defaultImage();
+    }
+
+    public function getDiscountPriceAttribute(): int | null
+    {
+        switch ($this->discount_type) {
+            case DiscountTypeEnum::FIX_PRICE->value: {
+                    return $this->price - $this->discount_amount;
+                }
+            case DiscountTypeEnum::PERCENT->value: {
+                    $discount = ($this->price * $this->discount_amount) / 100;
+                    return $this->price - $discount;
+                }
+            default: {
+                    return null;
+                }
+        }
     }
 }

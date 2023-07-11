@@ -1,5 +1,6 @@
 <?php
 
+use Domain\Product\Enums\DiscountTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,8 +21,9 @@ return new class extends Migration
             $table->string('code');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('category_id');
-            $table->integer('price')->default(0);
-            $table->integer('percent')->default(0);
+            $table->integer('price');
+            $table->integer('discount_amount')->default(0);
+            $table->enum('discount_type', [DiscountTypeEnum::values()])->default(DiscountTypeEnum::FIX_PRICE->value);
             $table->boolean('in_stock')->default(true);
             $table->boolean('status')->default(false);
             $table->integer('stock')->default(1);
