@@ -2,6 +2,7 @@
 
 namespace App\Http\GraphQL\Cart\Mutations;
 
+use Domain\Cart\Actions\AddToCartAction;
 use Domain\Cart\DTO\CartDTO;
 
 final class AddToCartMutation
@@ -20,6 +21,6 @@ final class AddToCartMutation
             $args['pay_type'],
         );
 
-        app(AddToCart::class)->run($data);
+        app(AddToCartAction::class)->run($data);
     }
 }

@@ -42,6 +42,11 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'id', 'parent_id');
     }
 
+    public function categories(): HasMany
+    {
+        return $this->hasMany(Category::class, 'parent_id', 'id');
+    }
+
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

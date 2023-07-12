@@ -33,4 +33,9 @@ class CartRepository
             'quantity'   => $data->quantity,
         ]);
     }
+
+    public function removeFromCart(int $product_id)
+    {
+        return;
+    }
 }
