@@ -3,6 +3,7 @@
 namespace Domain\Cart;
 
 use Domain\Cart\DTO\CartDTO;
+use Domain\Cart\Enums\CartPayTypeEnum;
 use Domain\Cart\Models\Cart;
 
 class CartRepository
@@ -20,7 +21,7 @@ class CartRepository
             'user_id'  => auth()->id(),
             'address'  => $data->address,
             'note'     => $data->note,
-            'pay_type' => $data->pay_type,
+            'pay_type' => $data->pay_type ?? CartPayTypeEnum::CASH->value,
         ]);
 
         $this->addProductToCart($cart, $data);
