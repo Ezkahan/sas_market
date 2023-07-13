@@ -32,6 +32,7 @@ class CartRepository
         $cart->products()->create([
             'product_id' => $data->product_id,
             'quantity'   => $data->quantity,
+            'price'      => $data->price,
         ]);
     }
 

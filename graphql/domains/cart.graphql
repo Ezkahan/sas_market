@@ -16,7 +16,7 @@ extend type Query {
 }
 
 extend type Mutation {
-    addToCart(product_id: ID!, quantity: Int!): Cart
+    addToCart(product_id: ID!, quantity: Int!, price: Int!): Cart
         @guard
         @field(resolver: "AddToCartMutation")
 }

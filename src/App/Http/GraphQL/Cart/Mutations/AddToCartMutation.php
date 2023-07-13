@@ -16,6 +16,7 @@ final class AddToCartMutation
         $data = new CartDTO(
             $args['product_id'],
             $args['quantity'],
+            $args['price'],
             $args['address'] ?? null,
             $args['note'] ?? null,
             $args['pay_type'] ?? null,
