@@ -22,6 +22,6 @@ final class AddToCartMutation
             $args['pay_type'] ?? null,
         );
 
-        app(AddToCartAction::class)->run($data);
+        return app(AddToCartAction::class)->run($data);
     }
 }

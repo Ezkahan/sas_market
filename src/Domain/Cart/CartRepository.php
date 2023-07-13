@@ -29,11 +29,13 @@ class CartRepository
 
     public function addProductToCart(Cart $cart, CartDTO $data)
     {
-        return $cart->products()->create([
+        $cart->products()->create([
             'product_id' => $data->product_id,
             'quantity'   => $data->quantity,
             'price'      => $data->price,
         ]);
+
+        return $cart;
     }
 
     public function removeFromCart(int $product_id)
