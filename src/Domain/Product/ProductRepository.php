@@ -26,6 +26,11 @@ class ProductRepository
         return $product;
     }
 
+    public function findByID(int $product_id)
+    {
+        return $this->model->find($product_id);
+    }
+
     public function delete($id): string
     {
         return $this->model->where('id', '=', $id)->delete();
