@@ -12,9 +12,12 @@ class CartRepository
     protected Cart $model;
     protected ProductRepository $productRepo;
 
-    public function __construct(Cart $cart)
-    {
+    public function __construct(
+        Cart $cart,
+        ProductRepository $productRepo
+    ) {
         $this->model = $cart;
+        $this->productRepo = $productRepo;
     }
 
     public function addToCart(CartDTO $data)
