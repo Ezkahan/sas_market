@@ -30,9 +30,10 @@ class CartRepository
     public function addProductToCart(Cart $cart, CartDTO $data)
     {
         $cart->products()->create([
-            'product_id' => $data->product_id,
-            'quantity'   => $data->quantity,
-            'price'      => $data->price,
+            'product_id'     => $data->product_id,
+            'quantity'       => $data->quantity,
+            'price'          => $data->price,
+            'discount_price' => $data->discount_price,
         ]);
 
         return $cart;
