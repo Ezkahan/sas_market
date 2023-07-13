@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Brand;
+namespace Domain\Cart;
 
 use Domain\Cart\DTO\CartDTO;
 use Domain\Cart\Models\Cart;

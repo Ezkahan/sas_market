@@ -4,7 +4,6 @@ namespace App\Http\GraphQL\Product\Mutations;
 
 use Domain\Product\Actions\AddProductAction;
 use Domain\Product\DTO\ProductDTO;
-use Illuminate\Support\Facades\Log;
 
 final class AddProductMutation
 {

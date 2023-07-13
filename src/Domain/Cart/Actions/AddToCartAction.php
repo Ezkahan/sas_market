@@ -2,7 +2,7 @@
 
 namespace Domain\Cart\Actions;
 
-use Domain\Brand\CartRepository;
+use Domain\Cart\CartRepository;
 use Domain\Cart\DTO\CartDTO;
 use Exception;
 
