@@ -8,7 +8,7 @@ class CartDTO
         public readonly int $product_id,
         public readonly int $quantity,
         public readonly int $price,
-        public readonly int $discount_price,
+        public readonly ?int $discount_price,
         public readonly ?string $address,
         public readonly ?string $note,
         public readonly ?string $pay_type,
