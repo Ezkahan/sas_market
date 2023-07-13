@@ -24,12 +24,12 @@ class CartRepository
             'pay_type' => $data->pay_type ?? CartPayTypeEnum::CASH->value,
         ]);
 
-        $this->addProductToCart($cart, $data);
+        return $this->addProductToCart($cart, $data);
     }
 
     public function addProductToCart(Cart $cart, CartDTO $data)
     {
-        $cart->products()->create([
+        return $cart->products()->create([
             'product_id' => $data->product_id,
             'quantity'   => $data->quantity,
             'price'      => $data->price,
