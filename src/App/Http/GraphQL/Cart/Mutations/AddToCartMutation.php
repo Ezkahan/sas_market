@@ -16,9 +16,9 @@ final class AddToCartMutation
         $data = new CartDTO(
             $args['product_id'],
             $args['quantity'],
-            $args['address'],
-            $args['note'],
-            $args['pay_type'],
+            $args['address'] ?? null,
+            $args['note'] ?? null,
+            $args['pay_type'] ?? null,
         );
 
         app(AddToCartAction::class)->run($data);
