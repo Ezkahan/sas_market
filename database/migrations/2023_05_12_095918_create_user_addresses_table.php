@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('address');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

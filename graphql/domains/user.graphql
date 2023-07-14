@@ -59,6 +59,10 @@ type Mutation {
         @guard
         @field(resolver: "AddAddressMutation")
 
+    activeAddress(id: ID!): String
+        @guard
+        @field(resolver: "ActiveAddressMutation")
+
     deleteAddress(id: ID!): String
         @guard
         @field(resolver: "DeleteAddressMutation")
