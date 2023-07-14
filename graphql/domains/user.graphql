@@ -15,6 +15,7 @@ type User {
 }
 
 type UserAddress {
+    id: ID
     address: String
 }
 
