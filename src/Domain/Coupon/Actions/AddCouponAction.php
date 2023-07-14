@@ -6,7 +6,7 @@ use Domain\Coupon\CouponRepository;
 use Domain\Coupon\DTO\CouponDTO;
 use Exception;
 
-class CreateCouponAction
+class AddCouponAction
 {
     protected CouponRepository $repository;
 

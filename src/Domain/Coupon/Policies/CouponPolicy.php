@@ -9,12 +9,7 @@ class CouponPolicy
 {
     use HandlesAuthorization;
 
-    public function create(User $user)
-    {
-        return true;
-    }
-
-    public function update(User $user)
+    public function add(User $user)
     {
         return true;
     }

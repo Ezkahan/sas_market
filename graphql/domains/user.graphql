@@ -17,6 +17,7 @@ type User {
 type UserAddress {
     id: ID
     address: String
+    active: Boolean
 }
 
 type LoginResponse {
@@ -43,6 +44,7 @@ extend type Query {
         @guard
         @can(ability: "getUser", model: "Domain\\User\\Models\\User")
     me: User @auth
+    myAddresses: [UserAddress] @guard @field(resolver: "GetMyAddressesQuery")
 }
 
 type Mutation {

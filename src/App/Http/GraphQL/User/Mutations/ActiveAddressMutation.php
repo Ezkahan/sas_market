@@ -13,9 +13,11 @@ final class ActiveAddressMutation
         $user = auth()->user();
 
         // before activation set false all addresses
-        $user->addresses()->update(['active', false]);
+        $user->addresses->map(function ($address) {
+            return $address->update(['active' => false]);
+        });
 
-        if ($user->addresses()->where('id', '=', $args['id'])->update(['active', true])) {
+        if ($user->addresses()->where('id', '=', $args['id'])->update(['active' => true])) {
             return 'success';
         }
 

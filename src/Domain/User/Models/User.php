@@ -3,6 +3,7 @@
 namespace Domain\User\Models;
 
 use Domain\Cart\Models\Cart;
+use Domain\Coupon\Models\Coupon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

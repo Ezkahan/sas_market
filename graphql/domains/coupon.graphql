@@ -1,9 +1,11 @@
 type Coupon {
-    id: ID!
+    id: ID
     title: JSON!
-    promo_price: Int!
-    started_at: DateTime!
-    ended_at: DateTime!
+    discount: Int
+    discount_type: String
+    confirmed: Boolean
+    type: String
+    expires_at: DateTime
 }
 
 extend type Query {
@@ -12,15 +14,16 @@ extend type Query {
 }
 
 extend type Mutation {
-    createCoupon(
+    addCoupon(
         title: JSON!
-        promo_price: Int!
-        started_at: DateTime!
-        ended_at: DateTime!
+        discount: Int!
+        discount_type: String!
+        expires_at: DateTime!
+        type: String!
     ): Coupon
         @guard
-        @can(ability: "create", model: "Domain\\Coupon\\Models\\Coupon")
-        @field(resolver: "CreateCouponMutation")
+        @can(ability: "add", model: "Domain\\Coupon\\Models\\Coupon")
+        @field(resolver: "AddCouponMutation")
 
     deleteCoupon(id: ID!): String
         @guard

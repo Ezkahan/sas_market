@@ -2,6 +2,7 @@
 
 namespace Domain\Coupon\Models;
 
+use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
@@ -13,20 +14,20 @@ class Coupon extends Model
 
     protected $fillable = [
         'title',
-        'promo_price',
-        'started_at',
-        'ended_at',
+        'discount',
+        'discount_type',
+        'confirmed',
+        'type',
+        'expires_at',
     ];
 
     protected $casts = [
-        'title' => 'json',
-        'started_at' => 'datetime',
-        'ended_at' => 'datetime',
+        'title'      => 'json',
+        'expires_at' => 'datetime',
     ];
 
     protected $dates = [
-        'started_at',
-        'ended_at',
+        'expires_at',
     ];
 
     public function users()
