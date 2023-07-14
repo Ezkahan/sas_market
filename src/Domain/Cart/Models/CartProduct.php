@@ -2,6 +2,7 @@
 
 namespace Domain\Cart\Models;
 
+use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

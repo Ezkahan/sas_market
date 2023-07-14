@@ -16,12 +16,7 @@ return new class extends Migration
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->tinyInteger('apartment');
-            $table->tinyInteger('floor')->nullable();
-            $table->string('house');
             $table->string('address');
-            $table->string('lat')->nullable();
-            $table->string('lng')->nullable();
             $table->timestamps();
         });
     }

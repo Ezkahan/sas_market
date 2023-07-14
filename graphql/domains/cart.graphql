@@ -11,8 +11,15 @@ type CartProduct {
     discount_price: Int
 }
 
+type DeliveryCost {
+    id: ID
+    key: String
+    value: JSON
+}
+
 extend type Query {
     getCart(type: String): [Cart!]! @field(resolver: "GetCartQuery")
+    getDeliveryCosts: DeliveryCost @field(resolver: "GetDeliveryCosts")
 }
 
 extend type Mutation {

@@ -23,4 +23,14 @@ class UserPolicy
     {
         return true;
     }
+
+    public function getList()
+    {
+        return true;
+    }
+
+    public function getUser()
+    {
+        return true;
+    }
 }

@@ -2,6 +2,7 @@ type User {
     id: ID
     firstname: String
     lastname: String
+    fullname: String
     photo: String
     birth_day: String # (required, not editable)
     phone: String
@@ -10,6 +11,11 @@ type User {
     role_id: String
     gender: String
     device: String
+    addresses: [UserAddress] @hasMany
+}
+
+type UserAddress {
+    address: String
 }
 
 type LoginResponse {
@@ -27,8 +33,14 @@ type RegisterResponse {
 }
 
 extend type Query {
-    users(orderBy: _ @orderBy(columns: ["id"])): [User!]! @paginate @guard
-    user(id: ID @eq): User @find @guard
+    users(orderBy: _ @orderBy(columns: ["id"])): [User!]!
+        @paginate
+        @guard
+        @can(ability: "getList", model: "Domain\\User\\Models\\User")
+    user(id: ID @eq): User
+        @find
+        @guard
+        @can(ability: "getUser", model: "Domain\\User\\Models\\User")
     me: User @auth
 }
 
@@ -41,4 +53,12 @@ type Mutation {
         password: String!
         password_confirmation: String!
     ): RegisterResponse @field(resolver: "RegisterMutation")
+
+    addAddress(address: String!): UserAddress
+        @guard
+        @field(resolver: "AddAddressMutation")
+
+    deleteAddress(id: ID!): String
+        @guard
+        @field(resolver: "DeleteAddressMutation")
 }

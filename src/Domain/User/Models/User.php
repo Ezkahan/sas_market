@@ -3,10 +3,10 @@
 namespace Domain\User\Models;
 
 use Domain\Cart\Models\Cart;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
@@ -24,7 +24,7 @@ class User extends Authenticatable
         'email_verified_at',
         'phone_verified_at',
         'birth_day',
-        'photo',
+        'photo_path',
         'role_id',
     ];
 
@@ -32,8 +32,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    protected $casts = [];
 
     public static function boot()
     {
@@ -54,15 +52,25 @@ class User extends Authenticatable
         return $this->belongsTo(Cart::class);
     }
 
-    public function getPhoto()
+    public function addresses(): HasMany
+    {
+        return $this->hasMany(UserAddress::class);
+    }
+
+    public function getPhotoAttribute()
     {
         $path = '/assets/images/users/';
-        $photo = $this->photo;
+        $photo = $this->photo_path;
 
         if (is_file(public_path() . $path . $photo)) {
             return url('/') . $path . $photo;
         }
 
-        return url('/') . '/assets/images/defaults/user.webp';
+        return url('/') . '/assets/icons/user.png';
+    }
+
+    public function getFullnameAttribute()
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 }
