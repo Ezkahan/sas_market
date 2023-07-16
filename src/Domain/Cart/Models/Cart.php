@@ -3,6 +3,7 @@
 namespace Domain\Cart\Models;
 
 use Domain\User\Models\User;
+use Domain\User\Models\UserCoupon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,5 +30,10 @@ class Cart extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function coupons()
+    {
+        return $this->hasMany(UserCoupon::class);
     }
 }

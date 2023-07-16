@@ -5,7 +5,7 @@ namespace App\Http\GraphQL\Coupon\Mutations;
 use Domain\Coupon\DTO\CouponDTO;
 use Domain\Coupon\Models\Coupon;
 
-final class AddCouponMutation
+final class SaveCouponMutation
 {
     /**
      * @param  null  $_
@@ -21,6 +21,13 @@ final class AddCouponMutation
             $args["type"],          //: String!
         );
 
-        $coupon = Coupon::create($data->toArray());
+        if ($args["id"]) {
+            $coupon = Coupon::find($args["id"]);
+            $coupon->update($data->toArray());
+        } else {
+            $coupon = Coupon::create($data->toArray());
+        }
+
+        return $coupon;
     }
 }

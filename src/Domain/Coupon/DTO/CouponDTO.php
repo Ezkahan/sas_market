@@ -8,9 +8,10 @@ class CouponDTO
 {
     public function __construct(
         public readonly object $title,
-        public readonly int $promo_price,
-        public readonly DateTime $started_at,
-        public readonly DateTime $ended_at,
+        public readonly int $discount,
+        public readonly string $discount_type,
+        public readonly string $expires_at,
+        public readonly string $type,
     ) {
     }
 
@@ -21,9 +22,10 @@ class CouponDTO
                 'tm' => $this->title->tm,
                 'ru' => $this->title->ru,
             ],
-            'promo_price' => $this->promo_price,
-            'started_at'  => $this->started_at,
-            'ended_at'    => $this->ended_at,
+            'discount'      => $this->discount,
+            'discount_type' => $this->discount_type,
+            'expires_at'    => $this->expires_at,
+            'type'          => $this->type,
         ];
     }
 }

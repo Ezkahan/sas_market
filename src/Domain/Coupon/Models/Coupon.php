@@ -30,11 +30,6 @@ class Coupon extends Model
         'expires_at',
     ];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
-
     public function getTitleAttribute()
     {
         return $this->getTranslations('title');

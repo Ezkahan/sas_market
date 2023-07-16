@@ -9,24 +9,30 @@ type Coupon {
 }
 
 extend type Query {
-    coupon(id: ID! @eq): Coupon! @find
-    coupons(orderBy: _ @orderBy(columns: ["id"])): [Coupon!]! @paginate
+    coupon(id: ID! @eq): Coupon! @find @guard
+    coupons(orderBy: _ @orderBy(columns: ["id"])): [Coupon!]! @guard @paginate
+    couponList: [Coupon] @guard @field(resolver: "GetCouponListQuery")
 }
 
 extend type Mutation {
-    addCoupon(
+    saveCoupon(
+        id: ID
         title: JSON!
         discount: Int!
         discount_type: String!
-        expires_at: DateTime!
+        expires_at: String!
         type: String!
     ): Coupon
         @guard
         @can(ability: "add", model: "Domain\\Coupon\\Models\\Coupon")
-        @field(resolver: "AddCouponMutation")
+        @field(resolver: "SaveCouponMutation")
 
     deleteCoupon(id: ID!): String
         @guard
         @can(ability: "delete", model: "Domain\\Coupon\\Models\\Coupon")
         @field(resolver: "DeleteCouponMutation")
+
+    applyCoupon(coupon_id: ID!): String
+        @guard
+        @field(resolver: "ApplyCouponMutation")
 }

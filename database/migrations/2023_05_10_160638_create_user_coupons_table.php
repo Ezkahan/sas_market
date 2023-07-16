@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedInteger('coupon_id');
+            $table->unsignedInteger('cart_id');
             $table->timestamp('used_at')->nullable();
             $table->timestamps();
         });

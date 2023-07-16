@@ -2,6 +2,7 @@ type Cart {
     id: ID!
     user: User @belongsTo
     products: [CartProduct!]! @hasMany
+    coupons: [Coupon]
 }
 
 type CartProduct {
