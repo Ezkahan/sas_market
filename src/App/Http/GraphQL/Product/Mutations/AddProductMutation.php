@@ -4,6 +4,7 @@ namespace App\Http\GraphQL\Product\Mutations;
 
 use Domain\Product\Actions\AddProductAction;
 use Domain\Product\DTO\ProductDTO;
+use Domain\Product\Enums\DiscountTypeEnum;
 
 final class AddProductMutation
 {
@@ -20,8 +21,8 @@ final class AddProductMutation
             $args['brand_id'],
             $args['category_id'],
             $args['price'],
-            $args['discount_type'],
-            $args['discount_amount'],
+            $args['discount_type'] ?? DiscountTypeEnum::FIX_PRICE->value,
+            $args['discount_amount'] ?? 0,
             $args['images'],
         );
 

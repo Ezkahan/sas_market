@@ -173,6 +173,7 @@ return [
             'App\\Http\\GraphQL\\User\\Queries',
             'App\\Http\\GraphQL\\Cart\\Queries',
             'App\\Http\\GraphQL\\Setting\\Queries',
+            'App\\Http\\GraphQL\\Product\\Queries',
         ],
         'mutations' => [
             'App\\Http\\GraphQL\\Banner\\Mutations',
