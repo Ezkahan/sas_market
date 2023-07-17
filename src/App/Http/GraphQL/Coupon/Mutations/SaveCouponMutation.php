@@ -21,7 +21,7 @@ final class SaveCouponMutation
             $args["type"],          //: String!
         );
 
-        if ($args["id"]) {
+        if (array_key_exists('id', $args) && $args["id"]) {
             $coupon = Coupon::find($args["id"]);
             $coupon->update($data->toArray());
         } else {
