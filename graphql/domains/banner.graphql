@@ -1,10 +1,10 @@
 type Banner {
     id: ID!
     link: String
-    image: Upload
+    image: String
     image_url: String
     visited_count: Int
-    position: BannerEnum!
+    position: BannerPositionEnum!
     type: BannerTypeEnum!
     category_id: ID
     category: Category @belongsTo
@@ -12,6 +12,8 @@ type Banner {
 
 extend type Query {
     banners(orderBy: _ @orderBy(columns: ["id"])): [Banner!]! @paginate
+    bannerList(type: String, position: String): [Banner]
+        @field(resolver: "GetBannerListQuery")
     banner(id: ID! @eq): Banner! @find
 }
 
@@ -19,7 +21,7 @@ extend type Mutation {
     addBanner(
         image: Upload
         link: String
-        category_id: ID!
+        category_id: ID
         position: String!
         type: String!
     ): Banner

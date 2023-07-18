@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Domain\Banner\Enums\BannerEnum;
+use Domain\Banner\Enums\BannerPositionEnum;
 use Domain\Banner\Enums\BannerTypeEnum;
 
 return new class extends Migration
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('image_path')->nullable();
             $table->integer('visited_count')->default(0);
             $table->string('category_id')->nullable();
-            $table->enum('position', [BannerEnum::values()])->default(BannerEnum::MAIN->value);
+            $table->enum('position', [BannerPositionEnum::values()])->default(BannerPositionEnum::MAIN->value);
             $table->enum('type', [BannerTypeEnum::values()])->default(BannerTypeEnum::WEB->value);
             $table->timestamps();
         });

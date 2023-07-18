@@ -15,6 +15,7 @@ type Product {
     preview: Int
     image: String
     images: [ProductImage] @hasMany
+    similarProducts: [Product]
 }
 
 type ProductImage {

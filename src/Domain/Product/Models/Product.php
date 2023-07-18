@@ -32,6 +32,7 @@ class Product extends Model
         'status',
         'stock',
         'preview',
+        'specially',
     ];
 
     protected $casts = [
@@ -95,5 +96,14 @@ class Product extends Model
                     return null;
                 }
         }
+    }
+
+    public function getSimilarProductsAttribute()
+    {
+        return $this->where('category_id', '=', $this->category_id)
+            ->where('brand_id', '=', $this->brand_id)
+            ->where('id', '!=', $this->id)
+            ->inRandomOrder()
+            ->get();
     }
 }

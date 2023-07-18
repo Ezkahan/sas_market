@@ -16,7 +16,7 @@ final class AddBannerMutation
         $data = new BannerDTO(
             $args['image'],
             $args['link'],
-            $args['category_id'],
+            $args['category_id'] ?? null,
             $args['position'],
             $args['type'],
         );

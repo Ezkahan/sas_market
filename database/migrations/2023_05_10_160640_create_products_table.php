@@ -27,6 +27,7 @@ return new class extends Migration
             $table->boolean('in_stock')->default(true);
             $table->boolean('status')->default(false);
             $table->integer('stock')->default(1);
+            $table->boolean('specially')->default(false);
             $table->integer('preview')->default(0);
             $table->timestamps();
         });

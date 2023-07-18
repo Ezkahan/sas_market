@@ -4,7 +4,6 @@ namespace App\Http\GraphQL\Product\Queries;
 
 use Carbon\Carbon;
 use Domain\Product\Models\Product;
-use Illuminate\Support\Facades\Log;
 
 final class getProductsByTypeQuery
 {
@@ -20,6 +19,10 @@ final class getProductsByTypeQuery
                 }
             case "NEW": {
                     return Product::whereDate('created_at', '>', Carbon::now()->subDays(10))->get();
+                }
+
+            case "SPECIALLY": {
+                    return Product::where('specially', '=', true)->get();
                 }
             default: {
                     return [];

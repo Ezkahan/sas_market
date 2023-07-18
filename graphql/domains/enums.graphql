@@ -1,4 +1,4 @@
-enum BannerEnum {
+enum BannerPositionEnum {
     TOP
     MAIN
     BOTTOM

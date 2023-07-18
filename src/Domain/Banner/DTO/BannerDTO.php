@@ -9,7 +9,7 @@ class BannerDTO
     public function __construct(
         public readonly UploadedFile $image,
         public readonly string $link,
-        public readonly int $category_id,
+        public readonly ?int $category_id,
         public readonly string $position,
         public readonly string $type,
     ) {
