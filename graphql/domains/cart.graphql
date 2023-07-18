@@ -3,6 +3,7 @@ type Cart {
     user: User @belongsTo
     products: [CartProduct!]! @hasMany
     coupons: [Coupon]
+    summary: CartSummary
 }
 
 type CartProduct {
@@ -16,6 +17,12 @@ type DeliveryCost {
     id: ID
     key: String
     value: JSON
+}
+
+type CartSummary {
+    totalDiscount: Int
+    couponTotal: Int
+    totalCost: Int
 }
 
 extend type Query {

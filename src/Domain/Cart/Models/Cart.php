@@ -36,4 +36,16 @@ class Cart extends Model
     {
         return $this->hasMany(UserCoupon::class);
     }
+
+    public function getSummaryAttribute()
+    {
+        $totalCost = $this->products()->sum('price');
+        $totalDiscount = $this->products()->sum('discount_price');
+
+        return [
+            'totalDiscount' => $totalDiscount,
+            'totalCost'     => $totalCost,
+            'couponTotal'   => 0,
+        ];
+    }
 }

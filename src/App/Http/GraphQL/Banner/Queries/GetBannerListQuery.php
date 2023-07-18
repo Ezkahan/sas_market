@@ -2,8 +2,6 @@
 
 namespace App\Http\GraphQL\Banner\Queries;
 
-use Domain\Banner\Enums\BannerPositionEnum;
-use Domain\Banner\Enums\BannerTypeEnum;
 use Domain\Banner\Models\Banner;
 
 final class GetBannerListQuery
