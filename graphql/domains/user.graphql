@@ -34,6 +34,10 @@ type RegisterResponse {
     token: String
 }
 
+type UserFavorite {
+    product: Product
+}
+
 extend type Query {
     users(orderBy: _ @orderBy(columns: ["id"])): [User!]!
         @paginate
@@ -45,6 +49,7 @@ extend type Query {
         @can(ability: "getUser", model: "Domain\\User\\Models\\User")
     me: User @auth
     myAddresses: [UserAddress] @guard @field(resolver: "GetMyAddressesQuery")
+    myFavorites: [UserFavorite] @guard @field(resolver: "GetMyFavoritesQuery")
 }
 
 type Mutation {
@@ -68,4 +73,8 @@ type Mutation {
     deleteAddress(id: ID!): String
         @guard
         @field(resolver: "DeleteAddressMutation")
+
+    addFavorite(product_id: ID!): UserFavorite
+        @guard
+        @field(resolver: "AddFavoriteMutation")
 }

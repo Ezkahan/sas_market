@@ -59,6 +59,11 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(UserFavorite::class);
+    }
+
     public function getPhotoAttribute()
     {
         $path = '/assets/images/users/';

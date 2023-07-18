@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Http\GraphQL\Cart\Queries;
+namespace App\Http\GraphQL\User\Queries;
 
-use Illuminate\Support\Facades\Log;
-
-final class GetCartQuery
+final class GetMyFavoritesQuery
 {
     /**
      * @param  null  $_
@@ -13,6 +11,6 @@ final class GetCartQuery
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        return $user->cart;
+        return $user->favorites;
     }
 }
