@@ -2,8 +2,13 @@ type Cart {
     id: ID!
     user: User @belongsTo
     products: [CartProduct!]! @hasMany
+    products_count: Int
     coupons: [UsedCupons]
     summary: CartSummary
+    note: String
+    pay_type: String
+    delivery_type: String
+    status: String
 }
 
 type CartProduct {
@@ -31,6 +36,7 @@ extend type Query {
     getDeliveryCosts: DeliveryCost @field(resolver: "GetDeliveryCostsQuery")
     myOrderHistory: [Cart] @field(resolver: "GetMyOrderHistoryQuery")
     myActiveOrders: [Cart] @field(resolver: "GetMyActiveOrdersQuery")
+    orders: [Cart] @guard @paginate
 }
 
 extend type Mutation {

@@ -2,7 +2,6 @@
 
 namespace Domain\Cart\Models;
 
-use Domain\Coupon\Enums\CouponTypeEnum;
 use Domain\Coupon\Enums\DiscountTypeEnum;
 use Domain\User\Models\User;
 use Domain\User\Models\UserAddress;
@@ -85,5 +84,10 @@ class Cart extends Model
             'couponTotal'   => $couponTotal,
             'total'         => $total,
         ];
+    }
+
+    public function getProductsCountAttribute()
+    {
+        return $this->products()->count();
     }
 }
