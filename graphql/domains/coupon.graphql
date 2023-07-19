@@ -8,6 +8,12 @@ type Coupon {
     expires_at: DateTime
 }
 
+type UsedCupons {
+    cart_id: String
+    coupon: Coupon
+    used_at: String
+}
+
 extend type Query {
     coupon(id: ID! @eq): Coupon! @find @guard
     coupons(orderBy: _ @orderBy(columns: ["id"])): [Coupon!]! @guard @paginate

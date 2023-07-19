@@ -16,6 +16,10 @@ class UserCoupon extends Model
         'used_at',
     ];
 
+    protected $dates = [
+        'used_at',
+    ];
+
     public function cart(): BelongsTo
     {
         return $this->belongsTo(Cart::class);
