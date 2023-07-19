@@ -2,6 +2,8 @@
 
 namespace Domain\Cart\Models;
 
+use Domain\Coupon\Enums\CouponTypeEnum;
+use Domain\Coupon\Enums\DiscountTypeEnum;
 use Domain\User\Models\User;
 use Domain\User\Models\UserAddress;
 use Domain\User\Models\UserCoupon;
@@ -48,6 +50,8 @@ class Cart extends Model
 
     public function getSummaryAttribute()
     {
+        $couponTotal = 0;
+
         $totalCost = $this->products()
             ->sum(
                 DB::raw('cart_products.price * cart_products.quantity')
@@ -58,10 +62,27 @@ class Cart extends Model
                 DB::raw('cart_products.discount_price * cart_products.quantity')
             );
 
+        foreach ($this->coupons() as $coupon) {
+            $cp = $coupon->coupon()->get();
+
+            if ($cp->discount_type == DiscountTypeEnum::FIX_PRICE->value) {
+                $couponTotal = $cp->discount;
+            }
+
+            if ($cp->discount_type == DiscountTypeEnum::PERCENT->value) {
+                $percentTotal = ($totalCost * $cp->discount) / 100;
+                $couponTotal = $couponTotal + $percentTotal;
+            }
+        }
+
+        $sum = ($totalCost - $totalDiscount - $couponTotal);
+        $total = $sum < 0 ? 0 : $sum;
+
         return [
-            'totalDiscount' => $totalDiscount,
             'totalCost'     => $totalCost,
-            'couponTotal'   => 0,
+            'totalDiscount' => $totalCost - $totalDiscount,
+            'couponTotal'   => $couponTotal,
+            'total'         => $total,
         ];
     }
 }
