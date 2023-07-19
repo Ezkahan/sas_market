@@ -45,13 +45,18 @@ class CartRepository
     public function addProductToCart(Cart $cart, CartDTO $data)
     {
         $product = $this->productRepo->findByID($data->product_id);
+        $cartProduct = $cart->products()->where('product_id', '=', $data->product_id)->get();
 
-        $cart->products()->create([
-            'product_id'     => $data->product_id,
-            'quantity'       => $data->quantity,
-            'price'          => $product->price,
-            'discount_price' => $product->discount_price,
-        ]);
+        if ($cartProduct) {
+            $cartProduct->update(['quantity' => $data->quantity]);
+        } else {
+            $cart->products()->create([
+                'product_id'     => $data->product_id,
+                'quantity'       => $data->quantity,
+                'price'          => $product->price,
+                'discount_price' => $product->discount_price,
+            ]);
+        }
 
         return $cart;
     }
