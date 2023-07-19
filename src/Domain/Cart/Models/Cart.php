@@ -50,12 +50,12 @@ class Cart extends Model
     {
         $totalCost = $this->products()
             ->sum(
-                DB::raw('cart_product.price * cart_product.quantity')
+                DB::raw('cart_products.price * cart_products.quantity')
             );
 
         $totalDiscount = $this->products()
             ->sum(
-                DB::raw('cart_product.discount_price * cart_product.quantity')
+                DB::raw('cart_products.discount_price * cart_products.quantity')
             );
 
         return [
