@@ -5,7 +5,6 @@ namespace Domain\Cart\DTO;
 class CartDTO
 {
     public function __construct(
-        public readonly ?int $id,
         public readonly int $product_id,
         public readonly int $quantity,
         public readonly ?int $address_id,
@@ -18,7 +17,6 @@ class CartDTO
     public function toArray()
     {
         return [
-            'id'            => $this->id,
             'product_id'    => $this->product_id,
             'quantity'      => $this->quantity,
             'address_id'    => $this->address_id,

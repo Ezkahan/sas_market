@@ -41,6 +41,13 @@ extend type Mutation {
         delivery_type: String
     ): Cart @guard @field(resolver: "AddToCartMutation")
 
+    cartCheckout(
+        address_id: ID!
+        note: String
+        pay_type: String!
+        delivery_type: String!
+    ): Cart @guard @field(resolver: "CartCheckoutMutation")
+
     removeFromCart(product_id: ID!): String
         @guard
         @field(resolver: "RemoveFromCartMutation")

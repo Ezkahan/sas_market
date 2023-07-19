@@ -11,6 +11,6 @@ final class GetCartQuery
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        return $user->getLastCart();
+        return $user->getActiveCart();
     }
 }

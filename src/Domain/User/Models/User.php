@@ -3,12 +3,9 @@
 namespace Domain\User\Models;
 
 use Domain\Cart\Models\Cart;
-use Domain\Coupon\Models\Coupon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
@@ -64,7 +61,7 @@ class User extends Authenticatable
         return $this->hasMany(UserFavorite::class);
     }
 
-    public function getLastCart()
+    public function getActiveCart()
     {
         return $this->carts()
             ->where('status', '=', null)
