@@ -13,12 +13,12 @@ final class ApplyCouponMutation
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        $cartID = $user->cart->id;
+        $cartID = $user->getActiveCart()->id;
 
         $user->coupons()->create([
-            'cart_id' => $cartID,
+            'cart_id'   => $cartID,
             'coupon_id' => $args["coupon_id"],
-            'used_at' => Carbon::now(),
+            'used_at'   => Carbon::now(),
         ]);
 
         return 'success';
