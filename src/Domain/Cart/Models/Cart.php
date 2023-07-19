@@ -75,7 +75,7 @@ class Cart extends Model
             }
         }
 
-        $sum = ($totalCost - $totalDiscount - $couponTotal);
+        $sum = ($totalCost - ($totalCost - $totalDiscount) - $couponTotal);
         $total = $sum < 0 ? 0 : $sum;
 
         return [
