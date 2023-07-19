@@ -34,4 +34,8 @@ extend type Mutation {
     addToCart(product_id: ID!, quantity: Int!): Cart
         @guard
         @field(resolver: "AddToCartMutation")
+
+    removeFromCart(product_id: ID!): String
+        @guard
+        @field(resolver: "RemoveFromCartMutation")
 }

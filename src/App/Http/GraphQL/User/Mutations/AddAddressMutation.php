@@ -11,14 +11,16 @@ final class AddAddressMutation
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        $address = $user->addresses()->create([
-            'address' => $args['address'],
-        ]);
 
-        if ($address) {
-            return $address;
+        if ($user->addresses()->count() == 0) {
+            return $user->addresses()->create([
+                'address' => $args['address'],
+                'active' => true,
+            ]);
         }
 
-        return 'error';
+        return $user->addresses()->create([
+            'address' => $args['address'],
+        ]);
     }
 }

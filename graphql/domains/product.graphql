@@ -13,6 +13,7 @@ type Product {
     status: Boolean
     stock: Int
     preview: Int
+    is_favorite: Boolean
     image: String
     images: [ProductImage] @hasMany
     similarProducts: [Product]

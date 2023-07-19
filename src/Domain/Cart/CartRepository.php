@@ -23,10 +23,11 @@ class CartRepository
     public function addToCart(CartDTO $data)
     {
         $cart = $this->model->create([
-            'user_id'  => auth()->id(),
-            'address'  => $data->address,
-            'note'     => $data->note,
-            'pay_type' => $data->pay_type ?? CartPayTypeEnum::CASH->value,
+            'user_id'       => auth()->id(),
+            'address_id'    => $data->address_id,
+            'note'          => $data->note,
+            'pay_type'      => $data->pay_type,
+            'delivery_type' => $data->delivery_type,
         ]);
 
         return $this->addProductToCart($cart, $data);
@@ -48,6 +49,12 @@ class CartRepository
 
     public function removeFromCart(int $product_id)
     {
-        return;
+        $user = auth()->user();
+
+        if ($user->cart()->products()->where('product_id', '=', $product_id)->delete()) {
+            return 'success';
+        }
+
+        return 'error';
     }
 }

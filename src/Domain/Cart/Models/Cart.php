@@ -3,10 +3,12 @@
 namespace Domain\Cart\Models;
 
 use Domain\User\Models\User;
+use Domain\User\Models\UserAddress;
 use Domain\User\Models\UserCoupon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Cart extends Model
 {
@@ -14,9 +16,10 @@ class Cart extends Model
 
     protected $fillable = [
         'user_id',
-        'address',
+        'address_id',
         'note',
         'pay_type',
+        'delivery_type',
         'status',
     ];
 
@@ -35,6 +38,11 @@ class Cart extends Model
     public function coupons()
     {
         return $this->hasMany(UserCoupon::class);
+    }
+
+    public function address(): HasOne
+    {
+        return $this->hasOne(UserAddress::class);
     }
 
     public function getSummaryAttribute()

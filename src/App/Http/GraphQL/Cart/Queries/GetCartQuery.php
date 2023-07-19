@@ -2,8 +2,6 @@
 
 namespace App\Http\GraphQL\Cart\Queries;
 
-use Illuminate\Support\Facades\Log;
-
 final class GetCartQuery
 {
     /**

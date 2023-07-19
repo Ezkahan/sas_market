@@ -5,6 +5,7 @@ namespace Domain\Product\Models;
 use Domain\Brand\Models\Brand;
 use Domain\Category\Models\Category;
 use Domain\Product\Enums\DiscountTypeEnum;
+use Domain\User\Models\UserFavorite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -68,6 +69,11 @@ class Product extends Model
     public function getImagesAttribute()
     {
         return $this->images;
+    }
+
+    public function getIsFavoriteAttribute()
+    {
+        return UserFavorite::where('product_id', '=', $this->id)->exists();
     }
 
     public function getImageAttribute()
