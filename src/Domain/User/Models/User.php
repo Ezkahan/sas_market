@@ -63,10 +63,16 @@ class User extends Authenticatable
 
     public function getActiveCart()
     {
-        return $this->carts()
+        $cart = $this->carts()
             ->where('status', '=', null)
             ->latest()
             ->first();
+
+        if (!$cart) {
+            $cart = $this->carts()->create();
+        }
+
+        return $cart;
     }
 
     public function getPhotoAttribute()
