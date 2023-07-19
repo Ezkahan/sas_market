@@ -28,7 +28,9 @@ type CartSummary {
 
 extend type Query {
     getCart: Cart @field(resolver: "GetCartQuery")
-    getDeliveryCosts: DeliveryCost @field(resolver: "GetDeliveryCosts")
+    getDeliveryCosts: DeliveryCost @field(resolver: "GetDeliveryCostsQuery")
+    myOrderHistory: [Cart] @field(resolver: "GetMyOrderHistoryQuery")
+    myActiveOrders: [Cart] @field(resolver: "GetMyActiveOrdersQuery")
 }
 
 extend type Mutation {

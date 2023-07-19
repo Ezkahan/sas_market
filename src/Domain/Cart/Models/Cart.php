@@ -62,6 +62,7 @@ class Cart extends Model
                 DB::raw('cart_products.discount_price * cart_products.quantity')
             );
         $coupons = $this->coupons;
+
         foreach ($coupons as $coupon) {
             $cp = $coupon->coupon;
 

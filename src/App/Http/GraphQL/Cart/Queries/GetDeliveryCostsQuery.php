@@ -4,7 +4,7 @@ namespace App\Http\GraphQL\Cart\Queries;
 
 use Domain\Setting\SettingRepository;
 
-final class GetDeliveryCosts
+final class GetDeliveryCostsQuery
 {
     protected SettingRepository $repository;
 

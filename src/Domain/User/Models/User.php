@@ -2,6 +2,7 @@
 
 namespace Domain\User\Models;
 
+use Domain\Cart\Enums\CartStatusEnum;
 use Domain\Cart\Models\Cart;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -73,6 +74,21 @@ class User extends Authenticatable
         }
 
         return $cart;
+    }
+
+    public function activeOrders()
+    {
+        return $this->carts()
+            ->where('status', '!=', null)
+            ->where('status', '!=', CartStatusEnum::DELIVERED->value)
+            ->get();
+    }
+
+    public function completedOrders()
+    {
+        return $this->carts()
+            ->where('status', '!=', CartStatusEnum::DELIVERED->value)
+            ->get();
     }
 
     public function getPhotoAttribute()
