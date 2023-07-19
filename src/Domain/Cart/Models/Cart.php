@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\DB;
 
 class Cart extends Model
 {
@@ -47,8 +48,15 @@ class Cart extends Model
 
     public function getSummaryAttribute()
     {
-        $totalCost = $this->products()->sum('price');
-        $totalDiscount = $this->products()->sum('discount_price');
+        $totalCost = $this->products()
+            ->sum(
+                DB::raw('cart_product.price * cart_product.quantity')
+            );
+
+        $totalDiscount = $this->products()
+            ->sum(
+                DB::raw('cart_product.discount_price * cart_product.quantity')
+            );
 
         return [
             'totalDiscount' => $totalDiscount,
