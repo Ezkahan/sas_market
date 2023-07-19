@@ -20,9 +20,10 @@ type DeliveryCost {
 }
 
 type CartSummary {
+    totalCost: Int
     totalDiscount: Int
     couponTotal: Int
-    totalCost: Int
+    total: Int
 }
 
 extend type Query {
