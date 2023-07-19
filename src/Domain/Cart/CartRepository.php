@@ -45,7 +45,7 @@ class CartRepository
     public function addProductToCart(Cart $cart, CartDTO $data)
     {
         $product = $this->productRepo->findByID($data->product_id);
-        $cartProduct = $cart->products()->where('product_id', '=', $data->product_id)->get();
+        $cartProduct = $cart->products()->where('product_id', '=', $data->product_id)->first();
 
         if ($cartProduct) {
             $cartProduct->update(['quantity' => $data->quantity]);
