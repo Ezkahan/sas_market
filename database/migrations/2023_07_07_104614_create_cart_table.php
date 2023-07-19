@@ -19,7 +19,7 @@ return new class extends Migration
         Schema::create('cart', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->longText('note')->nullable();
             $table->enum('pay_type', [CartPayTypeEnum::values()])->nullable();
             $table->enum('delivery_type', [DeliveryTypeEnum::values()])->nullable();

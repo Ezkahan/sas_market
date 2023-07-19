@@ -14,9 +14,10 @@ final class AddToCartMutation
     public function __invoke($_, array $args)
     {
         $data = new CartDTO(
+            $args['id'],
             $args['product_id'],
             $args['quantity'],
-            $args['address_id'],
+            $args['address_id'] ?? null,
             $args['note'] ?? null,
             $args['pay_type'] ?? null,
             $args['delivery_type'] ?? null,

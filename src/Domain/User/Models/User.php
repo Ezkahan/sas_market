@@ -49,9 +49,9 @@ class User extends Authenticatable
         return $this->hasMany(UserCoupon::class);
     }
 
-    public function cart(): HasOne
+    public function carts(): HasMany
     {
-        return $this->hasOne(Cart::class);
+        return $this->hasMany(Cart::class);
     }
 
     public function addresses(): HasMany
@@ -62,6 +62,14 @@ class User extends Authenticatable
     public function favorites(): HasMany
     {
         return $this->hasMany(UserFavorite::class);
+    }
+
+    public function getLastCart()
+    {
+        return $this->carts()
+            ->where('status', '=', null)
+            ->latest()
+            ->first();
     }
 
     public function getPhotoAttribute()

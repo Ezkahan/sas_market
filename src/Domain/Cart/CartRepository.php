@@ -3,7 +3,6 @@
 namespace Domain\Cart;
 
 use Domain\Cart\DTO\CartDTO;
-use Domain\Cart\Enums\CartPayTypeEnum;
 use Domain\Cart\Models\Cart;
 use Domain\Product\ProductRepository;
 
@@ -22,13 +21,23 @@ class CartRepository
 
     public function addToCart(CartDTO $data)
     {
-        $cart = $this->model->create([
-            'user_id'       => auth()->id(),
-            'address_id'    => $data->address_id,
-            'note'          => $data->note,
-            'pay_type'      => $data->pay_type,
-            'delivery_type' => $data->delivery_type,
-        ]);
+        if ($data->id) {
+            $cart = auth()->user()->carts()->where('id', '=', $data->id)->first();
+
+            $cart->update([
+                'address_id'    => $data->address_id,
+                'note'          => $data->note,
+                'pay_type'      => $data->pay_type,
+                'delivery_type' => $data->delivery_type,
+            ]);
+        } else {
+            $cart = auth()->user()->carts()->create([
+                'address_id'    => $data->address_id,
+                'note'          => $data->note,
+                'pay_type'      => $data->pay_type,
+                'delivery_type' => $data->delivery_type,
+            ]);
+        }
 
         return $this->addProductToCart($cart, $data);
     }
@@ -51,7 +60,7 @@ class CartRepository
     {
         $user = auth()->user();
 
-        if ($user->cart()->products()->where('product_id', '=', $product_id)->delete()) {
+        if ($user->getLastCart()->products()->where('product_id', '=', $product_id)->delete()) {
             return 'success';
         }
 
