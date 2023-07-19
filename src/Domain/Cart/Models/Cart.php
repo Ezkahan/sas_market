@@ -61,8 +61,8 @@ class Cart extends Model
             ->sum(
                 DB::raw('cart_products.discount_price * cart_products.quantity')
             );
-
-        foreach ($this->coupons() as $coupon) {
+        $coupons = $this->coupons()->get();
+        foreach ($coupons as $coupon) {
             $cp = $coupon->coupon()->get();
 
             if ($cp->discount_type == DiscountTypeEnum::FIX_PRICE->value) {
