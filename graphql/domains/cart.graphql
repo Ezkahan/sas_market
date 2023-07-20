@@ -61,4 +61,8 @@ extend type Mutation {
     removeFromCart(product_id: ID!): String
         @guard
         @field(resolver: "RemoveFromCartMutation")
+
+    changeStatus(id: ID!, status: String!): String
+        @guard
+        @field(resolver: "OrderChangeStatusMutation")
 }
