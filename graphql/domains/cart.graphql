@@ -37,6 +37,7 @@ extend type Query {
     myOrderHistory: [Cart] @field(resolver: "GetMyOrderHistoryQuery")
     myActiveOrders: [Cart] @field(resolver: "GetMyActiveOrdersQuery")
     orders: [Cart] @guard @paginate
+    order(id: ID!): Cart @guard @find
 }
 
 extend type Mutation {
