@@ -35,7 +35,7 @@ type RegisterResponse {
 }
 
 type UserFavorite {
-    product: Product
+    products: [Product] @hasMany
 }
 
 extend type Query {
