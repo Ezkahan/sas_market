@@ -91,16 +91,4 @@ class Cart extends Model
     {
         return $this->products()->count();
     }
-
-    public function completedOrders()
-    {
-        return $this->where("status", '=', CartStatusEnum::DELIVERED->value)->get();
-    }
-
-    public function activeOrders()
-    {
-        return $this->where("status", '=', CartStatusEnum::DELIVERED->value)
-            ->where("status", '=', CartStatusEnum::CANCELED->value)
-            ->get();
-    }
 }

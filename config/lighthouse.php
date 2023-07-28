@@ -174,6 +174,7 @@ return [
             'App\\Http\\GraphQL\\Cart\\Queries',
             'App\\Http\\GraphQL\\Setting\\Queries',
             'App\\Http\\GraphQL\\Product\\Queries',
+            'App\\Http\\GraphQL\\Page\\Queries',
         ],
         'mutations' => [
             'App\\Http\\GraphQL\\Banner\\Mutations',

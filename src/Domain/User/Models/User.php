@@ -76,18 +76,33 @@ class User extends Authenticatable
         return $cart;
     }
 
-    public function activeOrders()
-    {
-        return $this->carts()
-            ->where('status', '!=', null)
-            ->where('status', '!=', CartStatusEnum::DELIVERED->value)
-            ->get();
-    }
+    // public function activeOrders()
+    // {
+    //     return $this->carts()
+    //         ->where('status', '!=', null)
+    //         ->where('status', '!=', CartStatusEnum::DELIVERED->value)
+    //         ->get();
+    // }
+
+    // public function completedOrders()
+    // {
+    //     return $this->carts()
+    //         ->where('status', '!=', CartStatusEnum::DELIVERED->value)
+    //         ->get();
+    // }
 
     public function completedOrders()
     {
         return $this->carts()
-            ->where('status', '!=', CartStatusEnum::DELIVERED->value)
+            ->where("status", '=', CartStatusEnum::DELIVERED->value)
+            ->get();
+    }
+
+    public function activeOrders()
+    {
+        return $this->carts()
+            ->where("status", '=', CartStatusEnum::DELIVERED->value)
+            ->where("status", '=', CartStatusEnum::CANCELED->value)
             ->get();
     }
 
