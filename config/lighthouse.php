@@ -189,6 +189,7 @@ return [
             'App\\Http\\GraphQL\\Product\\Mutations',
             'App\\Http\\GraphQL\\Cart\\Mutations',
             'App\\Http\\GraphQL\\Setting\\Mutations',
+            'App\\Http\\GraphQL\\Page\\Mutations',
         ],
         'subscriptions' => 'App\\GraphQL\\Subscriptions',
         'types' => 'App\\GraphQL\\Types',
