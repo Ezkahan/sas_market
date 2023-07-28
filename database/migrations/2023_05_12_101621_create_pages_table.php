@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pages', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->json('title')->nullable();
-            $table->json('description')->nullable();
+            $table->json('text')->nullable();
             $table->string('image')->nullable();
             $table->string('position'); // header / footer
             $table->timestamps();

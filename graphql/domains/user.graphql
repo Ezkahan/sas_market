@@ -77,4 +77,8 @@ type Mutation {
     addFavorite(product_id: ID!): UserFavorite
         @guard
         @field(resolver: "AddFavoriteMutation")
+
+    deleteFavorite(product_id: ID!): UserFavorite
+        @guard
+        @field(resolver: "DeleteFavoriteMutation")
 }

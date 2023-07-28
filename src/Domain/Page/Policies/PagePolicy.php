@@ -9,7 +9,7 @@ class PagePolicy
 {
     use HandlesAuthorization;
 
-    public function add(User $user)
+    public function save(User $user)
     {
         return true;
     }

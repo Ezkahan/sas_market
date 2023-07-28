@@ -2,6 +2,7 @@
 
 namespace Domain\Cart\Models;
 
+use Domain\Cart\Enums\CartStatusEnum;
 use Domain\Coupon\Enums\DiscountTypeEnum;
 use Domain\User\Models\User;
 use Domain\User\Models\UserAddress;
@@ -89,5 +90,17 @@ class Cart extends Model
     public function getProductsCountAttribute()
     {
         return $this->products()->count();
+    }
+
+    public function completedOrders()
+    {
+        return $this->where("status", '=', CartStatusEnum::DELIVERED->value)->get();
+    }
+
+    public function activeOrders()
+    {
+        return $this->where("status", '=', CartStatusEnum::DELIVERED->value)
+            ->where("status", '=', CartStatusEnum::CANCELED->value)
+            ->get();
     }
 }

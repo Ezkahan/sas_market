@@ -1,28 +1,34 @@
 <?php
 
-namespace Domain\Promotion\Models;
+namespace Domain\Page\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Promotion extends Model
+class Page extends Model
 {
     use HasTranslations;
 
     public $translatable = [
         'title',
-        'description',
+        'text',
     ];
 
     protected $fillable = [
         'title',
-        'description',
+        'text',
         'image',
         'position',
     ];
 
     protected $casts = [
-        'title' => 'json',
+        'title'       => 'json',
         'description' => 'json',
     ];
+
+    public function getImage()
+    {
+        $image = $this->image;
+        return is_file(public_path() . $image) ? url('/') . $image : defaultImage();
+    }
 }

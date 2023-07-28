@@ -10,6 +10,7 @@ type Category {
     category: Category @belongsTo
     categories: [Category] @hasMany
     products: [Product] @hasMany
+    banners: [Banner] @hasMany
     visited_count: Int
 }
 

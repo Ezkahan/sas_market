@@ -2,6 +2,7 @@
 
 namespace Domain\Category\Models;
 
+use Domain\Banner\Models\Banner;
 use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -50,6 +51,11 @@ class Category extends Model
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function banners(): HasMany
+    {
+        return $this->hasMany(Banner::class);
     }
 
     public function scopeMainCategories()

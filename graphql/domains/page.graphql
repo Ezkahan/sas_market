@@ -1,0 +1,29 @@
+type Page {
+    id: Int
+    title: JSON
+    text: JSON
+    image: String
+    position: String
+}
+
+extend type Query {
+    pages: Page @field(resolver: "GetPagesQuery")
+}
+
+extend type Mutation {
+    savePage(
+        id: ID
+        title: String
+        text: JSON
+        image: String
+        position: String
+    ): Page
+        @guard
+        @can(ability: "save", model: "Domain\\Page\\Models\\Page")
+        @field(resolver: "SavePageMutation")
+
+    deletePage(id: ID): String
+        @guard
+        @can(ability: "delete", model: "Domain\\Page\\Models\\Page")
+        @field(resolver: "DeletePageMutation")
+}
