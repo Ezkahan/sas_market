@@ -10,8 +10,7 @@ final class GetActiveCartQuery
      */
     public function __invoke($_, array $args)
     {
-        $id = $args["id"];
         $user = auth()->user();
-        return $user->getCart($id);
+        return $user->getActiveCart();
     }
 }

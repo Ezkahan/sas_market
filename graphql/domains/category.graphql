@@ -21,7 +21,7 @@ extend type Query {
         @field(resolver: "GetMainCategoriesQuery")
     subcategories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
         @field(resolver: "GetSubCategoriesQuery")
-    searchCategory(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
+    searchCategory(name: String): [Category!]
         @field(resolver: "SearchCategoryQuery")
 }
 

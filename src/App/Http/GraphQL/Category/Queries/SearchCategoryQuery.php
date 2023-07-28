@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Category\Queries;
 
+use Domain\Category\Models\Category;
+
 final class SearchCategoryQuery
 {
     /**
@@ -10,6 +12,8 @@ final class SearchCategoryQuery
      */
     public function __invoke($_, array $args)
     {
-        return;
+        $searchTerm = $args["name"];
+        $results = Category::where('name', 'LIKE', "%{$searchTerm}%")->get();
+        return $results;
     }
 }

@@ -76,6 +76,15 @@ class User extends Authenticatable
         return $cart;
     }
 
+    public function getCart(int $id)
+    {
+        $cart = $this->carts()
+            ->where('id', '=', $id)
+            ->first();
+
+        return $cart;
+    }
+
     // public function activeOrders()
     // {
     //     return $this->carts()

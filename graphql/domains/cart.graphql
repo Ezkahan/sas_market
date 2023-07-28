@@ -32,7 +32,8 @@ type CartSummary {
 }
 
 extend type Query {
-    getCart: Cart @field(resolver: "GetCartQuery")
+    getCart(id: ID!): Cart @field(resolver: "GetCartQuery")
+    getActiveCart: Cart @field(resolver: "GetActiveCartQuery")
     getDeliveryCosts: DeliveryCost @field(resolver: "GetDeliveryCostsQuery")
     myOrderHistory: [Cart] @field(resolver: "GetMyOrderHistoryQuery")
     myActiveOrders: [Cart] @field(resolver: "GetMyActiveOrdersQuery")
