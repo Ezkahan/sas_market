@@ -2,7 +2,7 @@
 
 namespace App\Http\GraphQL\Cart\Queries;
 
-final class GetActiveCartQuery
+final class GetCartQuery
 {
     /**
      * @param  null  $_
