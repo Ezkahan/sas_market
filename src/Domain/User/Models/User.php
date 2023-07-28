@@ -101,8 +101,8 @@ class User extends Authenticatable
     public function activeOrders()
     {
         return $this->carts()
-            ->where("status", '=', CartStatusEnum::DELIVERED->value)
-            ->where("status", '=', CartStatusEnum::CANCELED->value)
+            ->where("status", '!=', CartStatusEnum::DELIVERED->value)
+            ->where("status", '!=', CartStatusEnum::CANCELED->value)
             ->get();
     }
 
