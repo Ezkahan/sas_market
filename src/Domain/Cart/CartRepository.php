@@ -20,7 +20,7 @@ class CartRepository
     ) {
         $this->model = $cart;
         $this->productRepo = $productRepo;
-        $this->user = auth()->user();
+        $this->user = auth()->user() ?? null;
     }
 
     public function addToCart(CartDTO $data)
