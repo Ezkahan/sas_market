@@ -5,6 +5,7 @@ namespace App\Http\GraphQL\User\Mutations;
 use Domain\User\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 final class LoginMutation
 {
@@ -16,6 +17,8 @@ final class LoginMutation
     {
         $credentials = Arr::only($args, ['phone', 'password']);
         $user = User::where('phone', $credentials['phone'])->first();
+
+        Log::info($user);
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return [
@@ -34,7 +37,7 @@ final class LoginMutation
     public function rules()
     {
         return [
-            'phone' => ["digits_between:7,11", "unique:users"],
+            'phone'    => ["digits_between:7,11", "unique:users"],
             'password' => ["required"],
         ];
     }
