@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\News\Mutations;
 
+use Domain\News\Models\News;
+
 final class DeleteNewsMutation
 {
     /**
@@ -10,6 +12,13 @@ final class DeleteNewsMutation
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
+        $id = $args["id"];
+
+        $news = News::find($id);
+        if ($news->delete()) {
+            return 'success';
+        }
+
+        return 'error';
     }
 }

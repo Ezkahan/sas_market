@@ -1,8 +1,8 @@
 type News {
-    id: ID!
-    title: JSON!
-    description: JSON!
-    image: Upload
+    id: ID
+    title: JSON
+    description: JSON
+    image_url: String
 }
 
 extend type Query {
@@ -11,15 +11,10 @@ extend type Query {
 }
 
 extend type Mutation {
-    addNews(title: JSON!, description: JSON!, image: Upload): News
+    saveNews(id: ID, title: JSON!, description: JSON!, image: Upload): News
         @guard
-        @can(ability: "add", model: "Domain\\News\\Models\\News")
-        @field(resolver: "AddNewsMutation")
-
-    updateNews(title: JSON!, description: JSON!, image: Upload): News
-        @guard
-        @can(ability: "update", model: "Domain\\News\\Models\\News")
-        @field(resolver: "UpdateNewsMutation")
+        @can(ability: "save", model: "Domain\\News\\Models\\News")
+        @field(resolver: "SaveNewsMutation")
 
     deleteNews(id: ID!): String
         @guard

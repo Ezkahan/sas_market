@@ -9,12 +9,7 @@ class NewsPolicy
 {
     use HandlesAuthorization;
 
-    public function add(User $user)
-    {
-        return true;
-    }
-
-    public function update(User $user)
+    public function save(User $user)
     {
         return true;
     }

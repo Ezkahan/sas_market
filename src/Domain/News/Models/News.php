@@ -17,7 +17,7 @@ class News extends Model
     protected $fillable = [
         'title',
         'description',
-        'image',
+        'image_path',
     ];
 
     protected $casts = [
@@ -35,8 +35,8 @@ class News extends Model
         return $this->getTranslations('description');
     }
 
-    public function getImage()
+    public function getImageUrlAttribute()
     {
-        return is_file(public_path() . $this->image) ? url('/') . $this->image : defaultImage();
+        return is_file(public_path($this->image_path)) ? url("/") . $this->image_path : defaultImage();
     }
 }
