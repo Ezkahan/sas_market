@@ -6,6 +6,7 @@ use Domain\Cart\Enums\CartStatusEnum;
 use Domain\Cart\Models\Cart;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
@@ -57,9 +58,9 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
-    public function favorites(): HasMany
+    public function favorites(): BelongsToMany
     {
-        return $this->hasMany(UserFavorite::class);
+        return $this->belongsToMany(UserFavorite::class, 'user_favorites', 'user_id', 'product_id');
     }
 
     public function getActiveCart()
