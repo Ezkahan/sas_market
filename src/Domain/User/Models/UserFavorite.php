@@ -4,7 +4,7 @@ namespace Domain\User\Models;
 
 use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class UserFavorite extends Model
 {
@@ -13,13 +13,13 @@ class UserFavorite extends Model
         'product_id',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function products(): HasMany
+    public function product(): BelongsTo
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }

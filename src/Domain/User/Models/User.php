@@ -58,9 +58,9 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
-    public function favorites(): BelongsToMany
+    public function favorites(): HasMany
     {
-        return $this->belongsToMany(UserFavorite::class, 'user_favorites', 'user_id', 'product_id');
+        return $this->hasMany(UserFavorite::class);
     }
 
     public function getActiveCart()
