@@ -7,12 +7,13 @@ use Domain\Cart\Enums\CartStatusEnum;
 use Domain\Cart\Models\Cart;
 use Domain\Product\ProductRepository;
 use Domain\User\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class CartRepository
 {
     protected Cart $model;
     protected ProductRepository $productRepo;
-    protected User $user;
+    protected ?User $user;
 
     public function __construct(
         Cart $cart,
@@ -20,7 +21,7 @@ class CartRepository
     ) {
         $this->model = $cart;
         $this->productRepo = $productRepo;
-        $this->user = auth()->user() ?? null;
+        $this->user = Auth::check() && Auth::user();
     }
 
     public function addToCart(CartDTO $data)
