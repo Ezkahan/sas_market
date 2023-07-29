@@ -40,7 +40,8 @@ type Favorites {
 }
 
 type UserFavorite {
-    favorites: [Favorites]
+    # favorites: [Favorites]
+    product: Product
 }
 
 extend type Query {
