@@ -34,8 +34,13 @@ type RegisterResponse {
     token: String
 }
 
+type Favorites {
+    id: ID
+    product: Product
+}
+
 type UserFavorite {
-    products: [Product] @hasMany
+    favorites: [Favorites]
 }
 
 extend type Query {
