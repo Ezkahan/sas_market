@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\User\Queries;
 
+use Illuminate\Support\Facades\Log;
+
 final class GetMyAddressesQuery
 {
     /**
@@ -11,7 +13,7 @@ final class GetMyAddressesQuery
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-
+        Log::info($user->favorites);
         return $user->addresses;
     }
 }

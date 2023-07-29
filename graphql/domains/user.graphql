@@ -49,7 +49,7 @@ extend type Query {
         @can(ability: "getUser", model: "Domain\\User\\Models\\User")
     me: User @auth
     myAddresses: [UserAddress] @guard @field(resolver: "GetMyAddressesQuery")
-    myFavorites @guard @field(resolver: "GetMyFavoritesQuery")
+    myFavorites: [UserFavorite] @guard @field(resolver: "GetMyFavoritesQuery")
 }
 
 type Mutation {
