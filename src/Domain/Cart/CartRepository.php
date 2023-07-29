@@ -13,7 +13,6 @@ class CartRepository
 {
     protected Cart $model;
     protected ProductRepository $productRepo;
-    protected ?User $user;
 
     public function __construct(
         Cart $cart,
@@ -21,18 +20,17 @@ class CartRepository
     ) {
         $this->model = $cart;
         $this->productRepo = $productRepo;
-        $this->user = Auth::check() && Auth::user();
     }
 
     public function addToCart(CartDTO $data)
     {
-        $cart = $this->user->getActiveCart();
+        $cart = auth()->user()->getActiveCart();
         return $this->addProductToCart($cart, $data);
     }
 
     public function cartCheckout(array $data)
     {
-        $cart = $this->user->getActiveCart();
+        $cart = auth()->user()->getActiveCart();
         $cart->update([
             'address_id'    => $data["address_id"],
             'note'          => $data["note"],
@@ -63,7 +61,7 @@ class CartRepository
 
     public function removeFromCart(int $product_id)
     {
-        if ($this->user->getActiveCart()->products()->where('product_id', '=', $product_id)->delete()) {
+        if (auth()->user()->getActiveCart()->products()->where('product_id', '=', $product_id)->delete()) {
             return 'success';
         }
         return 'error';
