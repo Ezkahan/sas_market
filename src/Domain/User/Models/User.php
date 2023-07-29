@@ -4,7 +4,6 @@ namespace Domain\User\Models;
 
 use Domain\Cart\Enums\CartStatusEnum;
 use Domain\Cart\Models\Cart;
-use Domain\Product\Models\Product;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -60,7 +59,7 @@ class User extends Authenticatable
 
     public function favorites(): HasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(UserFavorite::class);
     }
 
     public function getActiveCart()

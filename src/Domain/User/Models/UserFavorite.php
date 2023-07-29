@@ -4,6 +4,7 @@ namespace Domain\User\Models;
 
 use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class UserFavorite extends Model
 {
@@ -17,8 +18,8 @@ class UserFavorite extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product()
+    public function products(): HasMany
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Product::class);
     }
 }

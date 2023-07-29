@@ -18,8 +18,6 @@ final class LoginMutation
         $credentials = Arr::only($args, ['phone', 'password']);
         $user = User::where('phone', $credentials['phone'])->first();
 
-        Log::info($user);
-
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return [
                 'message' => 'Error',
