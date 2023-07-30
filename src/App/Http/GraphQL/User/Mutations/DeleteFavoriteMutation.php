@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\User\Mutations;
 
+use Illuminate\Support\Facades\Log;
+
 final class DeleteFavoriteMutation
 {
     /**
@@ -11,6 +13,9 @@ final class DeleteFavoriteMutation
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        return $user->favorites()->where('id', '=', $args["product_id"])->delete();
+        $user->favorites()->where('id', '=', $args["product_id"])->delete();
+
+        Log::info($user->favorites);
+        return $user->favorites;
     }
 }
