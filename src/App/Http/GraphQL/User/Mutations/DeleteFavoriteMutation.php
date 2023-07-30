@@ -11,7 +11,7 @@ final class DeleteFavoriteMutation
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        $user->favorites()->where('id', '=', $args["product_id"])->delete();
+        $user->favorites()->where('product_id', '=', $args["product_id"])->delete();
         return $user->favorites;
     }
 }
