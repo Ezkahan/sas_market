@@ -11,8 +11,12 @@ final class AddFavoriteMutation
     public function __invoke($_, array $args)
     {
         $user = auth()->user();
-        return $user->favorites()->create([
-            'product_id' => $args['product_id'],
-        ]);
+        if (!$user->favorites()->where('id', '=', $args["product_id"])->exists()) {
+            $user->favorites()->create([
+                'product_id' => $args['product_id'],
+            ]);
+        }
+
+        return $user->favorites;
     }
 }
