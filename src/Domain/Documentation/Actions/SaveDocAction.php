@@ -6,7 +6,7 @@ use Domain\Documentation\DocumentationRepository;
 use Domain\Documentation\DTO\DocumentationDTO;
 use Exception;
 
-class AddDocumentationAction
+class SaveDocAction
 {
     protected DocumentationRepository $repository;
 
@@ -18,7 +18,7 @@ class AddDocumentationAction
     public function run(DocumentationDTO $data)
     {
         try {
-            return $this->repository->create($data);
+            return $this->repository->save($data);
         } catch (Exception $exception) {
             throw new Exception("Error not added " . $exception->getMessage());
         }

@@ -4,7 +4,7 @@ namespace App\Http\GraphQL\Documentation\Mutations;
 
 use Domain\Documentation\Actions\DeleteDocumentationAction;
 
-final class DeleteDocumentationMutation
+final class DeleteDocMutation
 {
     /**
      * @param  null  $_

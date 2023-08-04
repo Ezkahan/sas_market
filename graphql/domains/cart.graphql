@@ -66,4 +66,8 @@ extend type Mutation {
     changeStatus(id: ID!, status: String!): String
         @guard
         @field(resolver: "OrderChangeStatusMutation")
+
+    cancelOrder(id: ID!, status: String!): String
+        @guard
+        @field(resolver: "CancelOrderMutation")
 }

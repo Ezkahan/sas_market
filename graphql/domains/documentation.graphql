@@ -6,25 +6,24 @@ type Documentation {
 }
 
 extend type Query {
-    documentationById(id: ID! @eq): Documentation! @find
-    documentations(orderBy: _ @orderBy(columns: ["id"])): [Documentation!]!
-        @paginate
+    docDetail(id: ID! @eq): Documentation! @find
+    docList(orderBy: _ @orderBy(columns: ["id"])): [Documentation!]! @paginate
 }
 
 extend type Mutation {
-    addDocumentation(title: JSON!, text: JSON!): String
+    saveDoc(id: ID, title: JSON!, text: JSON!): Documentation
         @guard
         @can(
-            ability: "add"
+            ability: "save"
             model: "Domain\\Documentation\\Models\\Documentation"
         )
-        @field(resolver: "AddDocumentationMutation")
+        @field(resolver: "SaveDocMutation")
 
-    deleteDocumentation(id: ID!): String
+    deleteDoc(id: ID!): String
         @guard
         @can(
             ability: "delete"
             model: "Domain\\Documentation\\Models\\Documentation"
         )
-        @field(resolver: "DeleteDocumentationMutation")
+        @field(resolver: "DeleteDocMutation")
 }

@@ -14,9 +14,16 @@ class DocumentationRepository
         $this->model = $documentation;
     }
 
-    public function create(DocumentationDTO $data)
+    public function save(DocumentationDTO $data)
     {
-        return $this->model->create($data->toArray());
+        if ($data->id) {
+            $doc = $this->model->find($data->id);
+            $doc->update($data->toArray());
+        } else {
+            $doc = $this->model->create($data->toArray());
+        }
+
+        return $doc;
     }
 
     public function delete($id): string

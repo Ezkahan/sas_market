@@ -13,7 +13,7 @@ final class SaveNewsMutation
      */
     public function __invoke($_, array $args)
     {
-        $id = array_key_exists("id", $args) && $args["id"];
+        $id = array_key_exists("id", $args) ? $args["id"] : null;
 
         $data = new NewsDTO(
             $args['id'] ?? null,
@@ -24,15 +24,17 @@ final class SaveNewsMutation
 
         if ($id) {
             $news = News::find($id);
-            $news->update($args);
+            $news->update($data->toArray());
+
+            if ($data->image) {
+                $news->deleteImage();
+                $path = saveImage($args["image"], $args["title"]->tm, '/assets/images/news/');
+                $news->update(['image_path' => $path]);
+            }
+
             return $news;
-        }
-
-        $news = News::create($data->toArray());
-
-        if ($args["image"]) {
-            $path = saveImage($args["image"], $args["title"]->tm, '/assets/images/news/');
-            return $news->update(['image_path' => $path]);
+        } else {
+            $news = News::create($data->toArray());
         }
 
         return $news;

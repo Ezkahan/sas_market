@@ -5,7 +5,7 @@ namespace Domain\Documentation\Actions;
 use Domain\Documentation\DocumentationRepository;
 use Exception;
 
-class DeleteDocumentationAction
+class DeleteDocAction
 {
     protected DocumentationRepository $repository;
 

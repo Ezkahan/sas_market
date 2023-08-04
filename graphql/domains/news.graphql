@@ -3,10 +3,11 @@ type News {
     title: JSON
     description: JSON
     image_url: String
+    products: [Product]
 }
 
 extend type Query {
-    newsById(id: ID! @eq): News! @find
+    newsDetail(id: ID! @eq): News! @find
     news(orderBy: _ @orderBy(columns: ["id"])): [News!]! @paginate
 }
 
