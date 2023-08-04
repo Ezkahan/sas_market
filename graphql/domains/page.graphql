@@ -2,21 +2,22 @@ type Page {
     id: Int
     title: JSON
     text: JSON
-    image: String
+    image_url: String
     position: String
 }
 
 extend type Query {
-    pages: Page @field(resolver: "GetPagesQuery")
+    pageDetail(id: ID! @eq): Page @find
+    pages(orderBy: _ @orderBy(columns: ["id"])): [Page!]! @paginate
 }
 
 extend type Mutation {
     savePage(
         id: ID
-        title: String
-        text: JSON
-        image: String
-        position: String
+        title: JSON!
+        text: JSON!
+        image: Upload
+        position: String!
     ): Page
         @guard
         @can(ability: "save", model: "Domain\\Page\\Models\\Page")

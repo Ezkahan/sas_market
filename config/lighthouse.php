@@ -163,6 +163,7 @@ return [
             'Domain\\Product\\Models',
             'Domain\\Cart\\Models',
             'Domain\\Setting\\Models',
+            'Domain\\Page\\Models',
         ],
         'queries' => [
             'App\\Http\\GraphQL\\Banner\\Queries',

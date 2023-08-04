@@ -25,16 +25,14 @@ final class SaveNewsMutation
         if ($id) {
             $news = News::find($id);
             $news->update($data->toArray());
-
-            if ($data->image) {
-                $news->deleteImage();
-                $path = saveImage($args["image"], $args["title"]->tm, '/assets/images/news/');
-                $news->update(['image_path' => $path]);
-            }
-
-            return $news;
         } else {
             $news = News::create($data->toArray());
+        }
+
+        if ($data->image) {
+            $news->deleteImage();
+            $path = saveImage($args["image"], $args["title"]->tm, '/assets/images/news/');
+            $news->update(['image_path' => $path]);
         }
 
         return $news;

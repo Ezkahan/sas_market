@@ -27,6 +27,16 @@ class News extends Model
         'description' => 'json',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($news) {
+            $imagePath = public_path($news->image_path);
+            is_file($imagePath) ? File::delete($imagePath) : null;
+        });
+    }
+
     public function getTitleAttribute()
     {
         return $this->getTranslations('title');

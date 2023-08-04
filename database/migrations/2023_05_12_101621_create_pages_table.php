@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->json('title')->nullable();
             $table->json('text')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image_path')->nullable();
             $table->string('position'); // header / footer
             $table->timestamps();
         });
