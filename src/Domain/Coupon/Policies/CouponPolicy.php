@@ -14,6 +14,11 @@ class CouponPolicy
         return true;
     }
 
+    public function confirm(User $user)
+    {
+        return true;
+    }
+
     public function delete(User $user)
     {
         return true;

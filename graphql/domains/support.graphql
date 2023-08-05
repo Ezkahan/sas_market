@@ -1,0 +1,19 @@
+type Support {
+    id: ID
+    title: String!
+    email: String!
+    subject: String!
+}
+
+extend type Query {
+    support(id: ID! @eq): Support! @find @guard
+    supportList(orderBy: _ @orderBy(columns: ["id"])): [Support!]!
+        @guard
+        @paginate
+}
+
+extend type Mutation {
+    supportWrite(title: String!, email: String!, subject: String!): Support
+        @guard
+        @field(resolver: "SupportWriteMutation")
+}

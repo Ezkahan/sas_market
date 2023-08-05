@@ -2,7 +2,6 @@
 
 namespace Domain\Coupon\Models;
 
-use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
