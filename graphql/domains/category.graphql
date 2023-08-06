@@ -11,11 +11,13 @@ type Category {
     categories: [Category] @hasMany
     products: [Product] @hasMany
     banners: [Banner] @hasMany
+    category_brands: [Brand]
     visited_count: Int
 }
 
 extend type Query {
-    category(id: ID! @eq): Category! @find
+    category(id: ID! @eq): Category!
+        @field(resolver: "GetCategoryProductsQuery")
     categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]! @paginate
     mainCategories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
         @field(resolver: "GetMainCategoriesQuery")

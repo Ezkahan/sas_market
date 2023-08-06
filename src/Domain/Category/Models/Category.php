@@ -3,6 +3,7 @@
 namespace Domain\Category\Models;
 
 use Domain\Banner\Models\Banner;
+use Domain\Brand\Models\Brand;
 use Domain\Product\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -106,5 +107,12 @@ class Category extends Model
             $this->update(['image_path' => null]);
         }
         return;
+    }
+
+    public function getCategoryBrandsAttribute()
+    {
+        $brandsID = $this->products()->get()->pluck("brand_id");
+        $brands = Brand::whereIn('id', $brandsID)->get();
+        return $brands;
     }
 }

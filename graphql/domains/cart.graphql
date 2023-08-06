@@ -31,6 +31,10 @@ type CartSummary {
     total: Float
 }
 
+type OrderHours {
+    hours: [String]
+}
+
 extend type Query {
     getCart(id: ID!): Cart @field(resolver: "GetCartQuery")
     getActiveCart: Cart @field(resolver: "GetActiveCartQuery")
@@ -39,6 +43,7 @@ extend type Query {
     myActiveOrders: [Cart] @field(resolver: "GetMyActiveOrdersQuery")
     orders: [Cart] @guard @paginate
     order(id: ID!): Cart @guard @field(resolver: "GetOrderQuery")
+    getOrderHours: OrderHours @field(resolver: "GetOrderHours")
 }
 
 extend type Mutation {
