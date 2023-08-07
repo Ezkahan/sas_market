@@ -118,6 +118,6 @@ class Category extends Model
 
     public function getProductsAttribute($brands)
     {
-        return $this->products()->whereIn('brand_id', '=', $brands);
+        return $this->products()->whereIn('brand_ids', '=', $brands);
     }
 }

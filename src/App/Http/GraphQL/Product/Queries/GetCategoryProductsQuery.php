@@ -22,7 +22,7 @@ final class GetCategoryProductsQuery
         $category->products($brands);
 
         foreach ($types as $type) {
-            $category->where('type', '', Str::upper($type));
+            $category->where('type', '=', Str::upper($type));
         }
 
         Log::debug($category);
