@@ -2,6 +2,8 @@
 
 namespace App\Http\GraphQL\Cart\Queries;
 
+use Illuminate\Support\Facades\Auth;
+
 final class GetActiveCartQuery
 {
     /**
@@ -10,7 +12,10 @@ final class GetActiveCartQuery
      */
     public function __invoke($_, array $args)
     {
-        $user = auth()->user();
-        return $user->getActiveCart();
+        if (Auth::check()) {
+            $user = auth()->user();
+            return $user->getActiveCart();
+        }
+        return;
     }
 }

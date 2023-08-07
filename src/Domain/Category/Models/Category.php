@@ -115,4 +115,9 @@ class Category extends Model
         $brands = Brand::whereIn('id', $brandsID)->get();
         return $brands;
     }
+
+    public function getProductsAttribute($brands)
+    {
+        return $this->products()->whereIn('brand_id', '=', $brands);
+    }
 }

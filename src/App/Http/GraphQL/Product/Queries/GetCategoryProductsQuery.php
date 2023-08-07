@@ -2,6 +2,10 @@
 
 namespace App\Http\GraphQL\Product\Queries;
 
+use Domain\Category\Models\Category;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+
 final class GetCategoryProductsQuery
 {
     /**
@@ -11,9 +15,26 @@ final class GetCategoryProductsQuery
     public function __invoke($_, array $args)
     {
         $id = $args["id"];
-        $type = $args["type"];
-        $brand_id = $args["brand_id"];
+        $types = $args["types"];
+        $brands = $args["brands"];
+        $category = Category::find($id);
+        $category->products($brands);
 
-        return;
+        // Log::debug($types);
+        // Log::debug("___________");
+        // Log::debug($brands);
+
+        // foreach ($brands as $brand) {
+        //     Log::alert($brand);
+        // }
+
+        // Log::debug("___________");
+
+        foreach ($types as $type) {
+            $category->where('type', '', Str::upper($type));
+        }
+
+        Log::debug($category);
+        return $category;
     }
 }

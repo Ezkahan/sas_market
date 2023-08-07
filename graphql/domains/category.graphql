@@ -16,7 +16,7 @@ type Category {
 }
 
 extend type Query {
-    category(id: ID! @eq): Category!
+    category(id: ID! @eq, brands: [String], types: [String]): Category!
         @field(resolver: "GetCategoryProductsQuery")
     categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]! @paginate
     mainCategories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
