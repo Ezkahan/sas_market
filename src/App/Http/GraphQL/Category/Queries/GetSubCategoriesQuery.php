@@ -12,6 +12,6 @@ final class GetSubCategoriesQuery
      */
     public function __invoke($_, array $args)
     {
-        return Category::subCategories()->get();
+        return Category::subCategories()->paginate();
     }
 }
