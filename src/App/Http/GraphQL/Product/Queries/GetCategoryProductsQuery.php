@@ -15,20 +15,11 @@ final class GetCategoryProductsQuery
     public function __invoke($_, array $args)
     {
         $id = $args["id"];
-        $types = $args["types"];
-        $brands = $args["brands"];
+        $types = array_key_exists('types', $args) ? $args["types"] : null;
+        $brands = array_key_exists('brands', $args) ? $args["brands"] : null;
+
         $category = Category::find($id);
         $category->products($brands);
-
-        // Log::debug($types);
-        // Log::debug("___________");
-        // Log::debug($brands);
-
-        // foreach ($brands as $brand) {
-        //     Log::alert($brand);
-        // }
-
-        // Log::debug("___________");
 
         foreach ($types as $type) {
             $category->where('type', '', Str::upper($type));
