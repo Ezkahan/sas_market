@@ -9,6 +9,7 @@ use Domain\User\Models\UserFavorite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
@@ -73,7 +74,10 @@ class Product extends Model
 
     public function getIsFavoriteAttribute()
     {
-        return UserFavorite::where('product_id', '=', $this->id)->exists();
+        if (Auth::check()) {
+            return UserFavorite::where('product_id', '=', $this->id)->where('user_id', '=', auth()->id())->exists();
+        }
+        return false;
     }
 
     public function getImageAttribute()
