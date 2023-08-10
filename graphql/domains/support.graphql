@@ -14,6 +14,5 @@ extend type Query {
 
 extend type Mutation {
     supportWrite(title: String!, email: String!, subject: String!): Support
-        @guard
         @field(resolver: "SupportWriteMutation")
 }

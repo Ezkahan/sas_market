@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Domain\Order\Enums\PayTypeEnum;
 
 return new class extends Migration
 {
@@ -14,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('quick_order_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('accepted_by')->nullable();
-            $table->enum('pay_type', [PayTypeEnum::values()])->default(PayTypeEnum::CASH->value);
-            $table->text('address');
+            $table->unsignedBigInteger('quick_order_id');
+            $table->unsignedBigInteger('product_id');
+            $table->integer('quantity')->default(1);
+            $table->integer('price');
+            $table->integer('discount_price')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('quick_order_products');
     }
 };
