@@ -35,6 +35,15 @@ type OrderHours {
     hours: [String]
 }
 
+type QuickOrder {
+    name: String!
+    address: String!
+    phone: String!
+    note: String
+    delivery_type: String!
+    pay_type: String!
+}
+
 extend type Query {
     getCart(id: ID!): Cart @field(resolver: "GetCartQuery")
     getActiveCart: Cart @field(resolver: "GetActiveCartQuery")
@@ -73,4 +82,12 @@ extend type Mutation {
         @field(resolver: "OrderChangeStatusMutation")
 
     cancelOrder(id: ID!): String @guard @field(resolver: "CancelOrderMutation")
+    quickOrder(
+        name: String!
+        address: String!
+        phone: String!
+        note: String
+        delivery_type: String!
+        pay_type: String!
+    ): QuickOrder @guard @field(resolver: "QuickOrderMutation")
 }
