@@ -19,11 +19,11 @@ final class GetCategoryProductsQuery
         $brands = array_key_exists('brands', $args) ? $args["brands"] : null;
 
         $category = Category::with('products')->where('id', '=', $id)->first();
-        $category->products()->whereIn('brand_id', '=', $brands);
+        // $category->products()->whereIn('brand_id', '=', $brands);
 
-        foreach ($types as $type) {
-            $category->where('type', '=', Str::upper($type));
-        }
+        // foreach ($types as $type) {
+        //     $category->where('type', '=', Str::upper($type));
+        // }
 
         return $category;
     }
