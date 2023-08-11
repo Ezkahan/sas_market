@@ -2,6 +2,10 @@
 
 namespace App\Http\GraphQL\Cart\Queries;
 
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Log;
+
 final class GetOrderHours
 {
     /**
@@ -10,34 +14,26 @@ final class GetOrderHours
      */
     public function __invoke($_, array $args)
     {
-        // $carbon = new Carbon();
-        // $from = now()->tz("Asia/Ashgabat");
-        // $startHour = $from->startOfHour();
-        // $startTime = "09:00";
-        // $cutTime = "22:30";
-        // $interval = "1";
-        // $until = $carbon->endOfDay()->subHour(1)->subMinute(29)->subSecond(59);
-        // $time = $startHour->format("H:i") . ' - ' . $from->addHour(1)->format("H:i");
+        $carbon = new Carbon();
+        $from = now()->tz("Asia/Ashgabat");
+        $startHour = $from->startOfHour();
+        $startTime = "09:00";
+        $cutTime = "18:00";
+        $interval = "1";
+        $until = $carbon->endOfDay()->subHour(1)->subMinute(29)->subSecond(59);
+        $time = $startHour->format("H:i") . ' - ' . $from->addHour(1)->format("H:i");
 
-        // Log::info($until);
-        // Log::error($startHour);
-        // Log::emergency($time);
+        $data = [];
+        $intervals = CarbonPeriod::since($startHour)->hours($interval)->until($cutTime)->toArray();
+        foreach ($intervals as $interval) {
+            $to = next($intervals);
+            if ($to !== false && $to->format('H:i') <= "18:00") {
+                array_push($data, $interval->format("H:i") . '-' . $to->format('H:i'));
+            }
+        }
 
+        Log::debug($data);
 
-        // $hours = \Carbon\CarbonPeriod::since('09:00')->hours(1)->until('22:30')->toArray();
-        // Log::debug($hours);
-
-        // $data = [];
-        // $intervals = CarbonPeriod::since($startHour)->hours($interval)->until($cutTime)->toArray();
-        // foreach ($intervals as $interval) {
-        //     $to = next($intervals);
-        //     Log::alert($to);
-        //     if ($to !== false) {
-        //         array_push($data, $interval->format("H:i") . '-' . $to->toTimeString());
-        //     }
-        // }
-
-        // Log::debug($data);
-        return;
+        return $data;
     }
 }
