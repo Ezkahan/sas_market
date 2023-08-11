@@ -20,7 +20,6 @@ final class getProductsByTypeQuery
             case "NEW": {
                     return Product::whereDate('created_at', '>', Carbon::now()->subDays(10))->get();
                 }
-
             case "SPECIALLY": {
                     return Product::where('specially', '=', true)->get();
                 }

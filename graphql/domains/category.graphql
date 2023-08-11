@@ -15,8 +15,21 @@ type Category {
     visited_count: Int
 }
 
+type CategoryShow {
+    id: ID!
+    name: JSON!
+    description: JSON
+    icon_url: String
+    image_url: String
+    parent_id: ID
+    products: [Product]
+    banners: [Banner] @hasMany
+    categories: [Category] @hasMany
+    category_brands: [Brand]
+}
+
 extend type Query {
-    category(id: ID! @eq, brands: [String], types: [String]): Category!
+    category(id: ID! @eq, brands: [String], types: [String]): CategoryShow!
         @field(resolver: "GetCategoryProductsQuery")
     categories(orderBy: _ @orderBy(columns: ["id"])): [Category!]! @paginate
     mainCategories(orderBy: _ @orderBy(columns: ["id"])): [Category!]!
