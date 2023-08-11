@@ -40,6 +40,11 @@ type QuickOrder {
     pay_type: String!
 }
 
+input CartProductInput {
+    product_id: ID!
+    quantity: Int!
+}
+
 extend type Query {
     getCart(id: ID!): Cart @field(resolver: "GetCartQuery")
     getActiveCart: Cart @field(resolver: "GetActiveCartQuery")
@@ -61,6 +66,10 @@ extend type Mutation {
         pay_type: String
         delivery_type: String
     ): Cart @guard @field(resolver: "AddToCartMutation")
+
+    addToCartMultiple(products: [CartProductInput]): Cart
+        @guard
+        @field(resolver: "AddToCartMultipleMutation")
 
     cartCheckout(
         address_id: ID!

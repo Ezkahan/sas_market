@@ -6,8 +6,6 @@ use Domain\Cart\DTO\CartDTO;
 use Domain\Cart\Enums\CartStatusEnum;
 use Domain\Cart\Models\Cart;
 use Domain\Product\ProductRepository;
-use Domain\User\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class CartRepository
 {
@@ -26,6 +24,26 @@ class CartRepository
     {
         $cart = auth()->user()->getActiveCart();
         return $this->addProductToCart($cart, $data);
+    }
+
+    public function addToCartMultiple(array $products)
+    {
+        $cart = auth()->user()->getActiveCart();
+
+        foreach ($products as $product) {
+            $product = new CartDTO(
+                $product["product_id"],
+                $product["quantity"],
+                null,
+                null,
+                null,
+                null
+            );
+
+            return $this->addProductToCart($cart, $product);
+        }
+
+        return $cart;
     }
 
     public function cartCheckout(array $data)
