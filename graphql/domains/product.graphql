@@ -28,7 +28,8 @@ type ProductImage {
 extend type Query {
     products(orderBy: _ @orderBy(columns: ["id"])): [Product!]! @paginate
     product(id: ID @eq): Product! @find
-    searchProduct(name: String): Product! @find # ishlemeli where boyunca obshi harytlary gozlemeli
+    searchProduct(name: String): [Product]
+        @field(resolver: "SearchProductQuery")
     getProductsByType(type: String): [Product]
         @field(resolver: "getProductsByTypeQuery")
 }
