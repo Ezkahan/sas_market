@@ -82,6 +82,7 @@ extend type Mutation {
         @field(resolver: "OrderChangeStatusMutation")
 
     cancelOrder(id: ID!): String @guard @field(resolver: "CancelOrderMutation")
+    repeatOrder(id: ID!): String @guard @field(resolver: "RepeatOrderMutation")
     quickOrder(
         name: String!
         address: String!

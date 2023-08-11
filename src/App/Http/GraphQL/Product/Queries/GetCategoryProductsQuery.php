@@ -5,7 +5,6 @@ namespace App\Http\GraphQL\Product\Queries;
 use Carbon\Carbon;
 use Domain\Category\Models\Category;
 use Domain\Product\Models\Product;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 final class GetCategoryProductsQuery
