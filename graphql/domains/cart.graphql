@@ -8,6 +8,7 @@ type Cart {
     note: String
     pay_type: String
     delivery_type: String
+    delivery_time: String
     status: String
 }
 
