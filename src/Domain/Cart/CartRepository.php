@@ -101,10 +101,10 @@ class CartRepository
                 null
             );
 
-            $pr = $this->productRepo->findByID($product["product_id"]);
+            $pr = $this->productRepo->findByID($product->product_id);
             $activeCart->products()->create([
-                'product_id'     => $product["product_id"],
-                'quantity'       => $product["quantity"],
+                'product_id'     => $product->product_id,
+                'quantity'       => $product->quantity,
                 'price'          => $pr->price,
                 'discount_price' => $pr->discount_price,
             ]);
