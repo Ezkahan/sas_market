@@ -23,6 +23,7 @@ return new class extends Migration
             $table->longText('note')->nullable();
             $table->enum('pay_type', [CartPayTypeEnum::values()])->nullable();
             $table->enum('delivery_type', [DeliveryTypeEnum::values()])->nullable();
+            $table->string('delivery_time');
             $table->enum('status', [CartStatusEnum::values()])->nullable();
             $table->timestamps();
         });

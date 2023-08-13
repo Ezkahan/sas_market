@@ -12,7 +12,12 @@ final class AddToCartMultipleMutation
      */
     public function __invoke($_, array $args)
     {
-        $products = $args["products"];
-        return app(AddToCartMultipleAction::class)->run($products);
+        $products = array_key_exists('products', $args) ? $args["products"] : null;
+
+        if ($products) {
+            return app(AddToCartMultipleAction::class)->run($products);
+        }
+
+        return;
     }
 }

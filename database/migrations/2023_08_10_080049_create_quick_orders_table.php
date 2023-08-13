@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->longText('note')->nullable();
             $table->string('delivery_type');
+            $table->string('delivery_time');
             $table->string('pay_type');
             $table->timestamps();
         });

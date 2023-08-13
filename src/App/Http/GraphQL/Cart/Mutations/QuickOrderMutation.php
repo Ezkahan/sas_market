@@ -21,6 +21,7 @@ final class QuickOrderMutation
             'phone'         => $args["phone"],
             'note'          => $args["note"] ?? null,
             'delivery_type' => $args["delivery_type"],
+            'delivery_time' => $args["delivery_time"],
             'pay_type'      => $args["pay_type"],
         ];
 

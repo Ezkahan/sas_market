@@ -16,6 +16,7 @@ class QuickOrder extends Model
         'phone',
         'note',
         'delivery_type',
+        'delivery_time',
         'pay_type',
     ];
 

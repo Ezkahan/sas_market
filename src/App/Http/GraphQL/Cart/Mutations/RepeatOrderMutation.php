@@ -2,27 +2,22 @@
 
 namespace App\Http\GraphQL\Cart\Mutations;
 
-use Domain\Cart\Models\Cart;
+use Domain\Cart\CartRepository;
 
 final class RepeatOrderMutation
 {
+    protected $repository;
+
+    public function __construct(CartRepository $repository)
+    {
+        $this->repository = $repository;
+    }
     /**
      * @param  null  $_
      * @param  array{}  $args
      */
     public function __invoke($_, array $args)
     {
-        // TODO implement the resolver
-        $cart = Cart::find($args["id"]);
-        $activeCart = auth()->user()->getActiveCart();
-
-        foreach ($cart->products as $product) {
-            $activeCart->products()->create([
-                'product_id' => $product->product_id,
-                'quantity'   => $product->quantity,
-            ]);
-        }
-
-        return $activeCart;
+        return $this->repository->repeatOrder($args["id"]);
     }
 }

@@ -23,6 +23,7 @@ class Cart extends Model
         'note',
         'pay_type',
         'delivery_type',
+        'delivery_time',
         'status',
     ];
 

@@ -76,6 +76,7 @@ extend type Mutation {
         note: String
         pay_type: String!
         delivery_type: String!
+        delivery_time: String!
     ): Cart @guard @field(resolver: "CartCheckoutMutation")
 
     removeFromCart(product_id: ID!): String
@@ -95,5 +96,7 @@ extend type Mutation {
         note: String
         delivery_type: String!
         pay_type: String!
-    ): QuickOrder @guard @field(resolver: "QuickOrderMutation")
+        delivery_time: String!
+        products: [CartProductInput!]!
+    ): QuickOrder @field(resolver: "QuickOrderMutation")
 }

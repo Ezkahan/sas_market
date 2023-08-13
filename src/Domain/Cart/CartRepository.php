@@ -54,6 +54,7 @@ class CartRepository
             'note'          => $data["note"],
             'pay_type'      => $data["pay_type"],
             'delivery_type' => $data["delivery_type"],
+            'delivery_time' => $data["delivery_time"],
             'status'        => CartStatusEnum::WAITING->value,
         ]);
         return $cart;
@@ -83,5 +84,25 @@ class CartRepository
             return 'success';
         }
         return 'error';
+    }
+
+    public function repeatOrder(int $id)
+    {
+        $cart = $this->model->find($id);
+
+        foreach ($cart->products as $product) {
+            $product = new CartDTO(
+                $product["product_id"],
+                $product["quantity"],
+                null,
+                null,
+                null,
+                null
+            );
+
+            return $this->addProductToCart($cart, $product);
+        }
+
+        return $cart;
     }
 }
