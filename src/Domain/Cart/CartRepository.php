@@ -89,6 +89,7 @@ class CartRepository
     public function repeatOrder(int $id)
     {
         $cart = $this->model->find($id);
+        $activeCart = auth()->user()->getActiveCart();
 
         foreach ($cart->products as $product) {
             $product = new CartDTO(
@@ -100,7 +101,13 @@ class CartRepository
                 null
             );
 
-            $this->addProductToCart($cart, $product);
+            $pr = $this->productRepo->findByID($product["product_id"]);
+            $activeCart->products()->create([
+                'product_id'     => $product["product_id"],
+                'quantity'       => $product["quantity"],
+                'price'          => $pr->price,
+                'discount_price' => $pr->discount_price,
+            ]);
         }
 
         return $cart;
