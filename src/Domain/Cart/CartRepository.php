@@ -40,7 +40,7 @@ class CartRepository
                 null
             );
 
-            return $this->addProductToCart($cart, $product);
+            $this->addProductToCart($cart, $product);
         }
 
         return $cart;
@@ -100,7 +100,7 @@ class CartRepository
                 null
             );
 
-            return $this->addProductToCart($cart, $product);
+            $this->addProductToCart($cart, $product);
         }
 
         return $cart;
